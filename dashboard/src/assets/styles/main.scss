@@ -1,5 +1,20 @@
-@import './base.css';
+@import './base.scss';
+@import './colors';
+@import './fonts/nunito';
+@import './fonts/roboto';
+//dashboard app styles
+h1,h2,h3,h4,h5,h6{
+  font-family: $nunito;
+  font-weight: $n-medium;
+}
 
+p,span,a,i,b{
+  font-family: $roboto;
+  font-weight: $r-regular;
+}
+
+
+// default vue.js styles
 #app {
   max-width: 1280px;
   margin: 0 auto;
@@ -11,13 +26,13 @@
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: $vueGreen;
   transition: 0.4s;
 }
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    background-color: $vueBG;
   }
 }
 
