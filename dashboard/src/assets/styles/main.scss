@@ -6,45 +6,11 @@
 h1,h2,h3,h4,h5,h6{
   font-family: $nunito;
   font-weight: $n-medium;
+  color: $white;
 }
 
 p,span,a,i,b{
   font-family: $roboto;
   font-weight: $r-regular;
-}
-
-
-// default vue.js styles
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: $vueGreen;
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: $vueBG;
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+  color: $white;
 }
