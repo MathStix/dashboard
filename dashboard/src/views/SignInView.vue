@@ -1,47 +1,53 @@
 <template>
   <div class="page-wrap">
     <div class="container">
-      <h1>Sign in</h1>
-        <form>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input 
-              type="email" 
-              class="form-control" 
-              placeholder="Enter email" 
-              required
-              v-model="email"
-              @blur="checkEmail"
-              @keyup="checkEmail"
-            >
-            <div class="feedback" v-if="emailError">
-              <span class="small">
-                {{ emailError }}
-              </span>
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <h1 class="text-center">Sign in</h1>
+          <form>
+            <div class="form-group mt-3">
+              <label for="exampleInputEmail1">Email address</label>
+              <input 
+                type="email" 
+                class="form-control" 
+                placeholder="Enter email" 
+                required
+                v-model="email"
+                @blur="checkEmail"
+                @keyup="checkEmail"
+              >
+              <div class="feedback" v-if="emailError">
+                <span class="small">
+                  {{ emailError }}
+                </span>
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input 
-              type="password" 
-              class="form-control" 
-              placeholder="Password"
-              required
-              @blur="checkPassword"
-              @keyup="checkPassword"
-            >
-            <div class="feedback" v-if="passwordError">
-              <span class="small">
-                {{ passwordError }}
-              </span>
+            <div class="form-group mt-4">
+              <label for="exampleInputPassword1">Password</label>
+              <input 
+                type="password" 
+                class="form-control" 
+                placeholder="Password"
+                required
+                @blur="checkPassword"
+                @keyup="checkPassword"
+              >
+              <div class="feedback" v-if="passwordError">
+                <span class="small">
+                  {{ passwordError }}
+                </span>
+              </div>
             </div>
-          </div>
-          <button type="submit" class="btn btn-main">
-            <span>
-              Submit
-            </span>
-          </button>
-        </form>
+            <div class="btn-wrap">
+              <button type="submit" class="btn btn-main mt-4">
+                <span>
+                  Submit
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </template>
