@@ -32,6 +32,7 @@ export const validateId = (id: string):Boolean => {
 //   return false
 // }
 
+export const errSubmit = ():string => {return 'One or more fields had an error.';}
 export const errNameEmp = ():string => { return 'Name can not be empty.' }
 export const errName = (e:string):string => { return `${e} is not a name.` }
 export const errTitleEmp = ():string => { return 'Title can not be empty.' }
