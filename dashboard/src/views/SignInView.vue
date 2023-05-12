@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-4">
-          <h1 class="text-center">Sign in</h1>
+          <h1 class="text-center">Sign In</h1>
           <form>
             <div class="form-group mt-3">
               <label for="exampleInputEmail1">Email address</label>
