@@ -2,17 +2,21 @@
 @import './colors';
 @import './fonts/nunito';
 @import './fonts/roboto';
+@import './buttons';
+
 //dashboard app styles
 h1,h2,h3,h4,h5,h6{
   font-family: $nunito;
   font-weight: $n-medium;
   color: $white;
+  font-size: 40px;
 }
 
 p,span,a,i,b{
   font-family: $roboto;
   font-weight: $r-regular;
   color: $white;
+  font-size: 20px;
 }
 
 .page-wrap{

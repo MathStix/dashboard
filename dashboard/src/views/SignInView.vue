@@ -36,7 +36,11 @@
               </span>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-main">
+            <span>
+              Submit
+            </span>
+          </button>
         </form>
     </div>
   </div>
