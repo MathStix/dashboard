@@ -1,0 +1,25 @@
+@import './colors';
+
+.btn-main{
+  background: $red;
+  border-radius: 50px;
+  padding: 10px 10px;
+  width: 130px;
+  transition: all .3s ease-in-out;
+
+  span{
+    color: $white;
+    text-transform: uppercase;
+    font-size: 15px;
+  }
+
+  svg{
+    width: 23px;
+    height: 23px;
+  }
+
+  &:hover{
+    background: $bue;
+    transition: all .3s ease-in-out;
+  }
+}

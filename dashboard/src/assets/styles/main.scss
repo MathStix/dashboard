@@ -2,49 +2,38 @@
 @import './colors';
 @import './fonts/nunito';
 @import './fonts/roboto';
+@import './buttons';
+
 //dashboard app styles
 h1,h2,h3,h4,h5,h6{
   font-family: $nunito;
   font-weight: $n-medium;
+  color: $white;
+  font-size: 40px;
 }
 
 p,span,a,i,b{
   font-family: $roboto;
   font-weight: $r-regular;
+  color: $white;
+  font-size: 20px;
 }
 
-
-// default vue.js styles
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: $vueGreen;
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: $vueBG;
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+.page-wrap{
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $gradiant;
+  
+  &::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url(/images/backgroundMath.png);
   }
 }
