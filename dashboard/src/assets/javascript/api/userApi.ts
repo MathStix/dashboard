@@ -6,10 +6,20 @@ export const signIn = async (user: User) => {
   let result: { code: number, data: User | any } | null = null
 
   try {
-    result = {
-      code: 200,
-      data: 'in',
+    if(user.email == 'admin@admin.com' && user.password == 'adminadmin'){
+      result = {
+        code: 200,
+        data: 'in',
+      }
+    }else{
+      result = {
+        code: 400,
+        data: 'uit',
+      }
     }
+
+    // api call below
+
     // await axios.post(`${process.env.VITE_API_USER_URL}/login`, user,{
     //   headers: { 'Content-type': 'application/json' }
     // }).then((response)=> {
