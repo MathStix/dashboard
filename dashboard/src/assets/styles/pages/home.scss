@@ -1,0 +1,27 @@
+@import '../colors';
+.pacer{
+  padding: 0 40px 40px;
+}
+.page-wrap{
+  align-items: normal;
+  .inner-wrap{
+    width: 100%;
+    margin-top: 70px;
+    .btn{
+      width: fit-content;
+      &:not(:first-child){
+        margin-left: 15px;
+      }
+    }
+  }
+
+  .game-slide{
+    margin-top: 20px;
+    &:not(:first-child){
+      margin-top: 50px;
+    }
+    .slide{
+      display: flex;
+    }
+  }
+}
