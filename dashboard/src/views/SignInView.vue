@@ -87,7 +87,7 @@ export default defineComponent({
       if(!this.emailError && !this.passwordError){
         const res = await signIn({
           id: null,
-          name: null,
+          fullName: null,
           email: this.email,
           password: this.password
         });
