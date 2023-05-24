@@ -1,5 +1,4 @@
 import axios from "axios"
-import { ref, type Ref } from "vue"
 import type { UpdateUser, User } from "../models/user"
 
 export const signIn = async (user: User) => {
@@ -25,7 +24,7 @@ export const signIn = async (user: User) => {
     }).then((response)=> {
       if(response.status == 200) {
         const user: User = {
-          id: response.data['id'],
+          _id: response.data['_id'],
           fullName: response.data['fullName'],
           email: response.data['email'],
           password: response.data['password'],
@@ -80,7 +79,7 @@ export const signUp = async (user: User) => {
     }).then((response) => {
       if(response.status == 200) {
         const user: User = {
-          id: response.data['id'],
+          _id: response.data['_id'],
           fullName: response.data['fullName'],
           email: response.data['email'],
           password: response.data['password'],
