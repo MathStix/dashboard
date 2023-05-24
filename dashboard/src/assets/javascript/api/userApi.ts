@@ -45,3 +45,28 @@ export const signIn = async (user: User) => {
 
   return result
 }
+
+export const checkUser = async (id: string) => {
+  let result: Boolean = false
+  try {
+    if(id == '1'){
+      result = true
+    }else{
+      result = false
+    }
+
+    // api call below
+
+    // await axios.post(`${process.env.VITE_API_USER_URL}/check`, id,{
+    //   headers: { 'Content-type': 'application/json' }
+    // }).then((response)=> {
+    //   if(response.status == 200) {
+    //     result = true
+    //   }
+    // });
+  } catch (error: any) {
+    result = false
+  }
+
+  return result
+}

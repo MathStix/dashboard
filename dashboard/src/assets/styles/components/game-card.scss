@@ -1,0 +1,43 @@
+@import '../colors';
+.card{
+  margin-top: 40px;
+  width: 375px;
+  min-width: 375px;
+  margin: 0 10px;
+  display: block;
+  position: relative;
+  z-index: 10;
+  background: $white;
+
+  .inner{
+    background: $white;
+    border-radius: 20px;
+    padding: 25px 15px;
+  }
+  .img-wap{
+    width: 75%;
+    margin: auto;
+  }
+  .btn{
+    margin: auto;
+  }
+  p{
+    padding-top: 15px;
+    line-height: 1.3;
+    font-size: 15px;
+    color: $black;
+    margin-bottom: 0;
+  }
+
+  &::after{
+    content: "";
+    position: absolute;
+    width: calc(100% + 15px);
+    height: calc(100% + 15px);
+    top: -5px;
+    left: -5px;
+    background: $gradiant;
+    border-radius: 20px;
+    z-index: -1;
+  }
+}

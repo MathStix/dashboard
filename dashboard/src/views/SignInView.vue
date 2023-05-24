@@ -93,8 +93,9 @@ export default defineComponent({
         });
 
         if(res?.code == 200){
-          console.log('submit')
+          sessionStorage.setItem('user', '1');
           this.loading = false;
+          this.$router.push('home');
         }
         else{
           console.log('not submit')
