@@ -66,6 +66,31 @@ export const checkUser = async (id: string) => {
   return result
 }
 
+export const getUser = async (id: string) => {
+  let result: { code: number, data: User | any } | null = null
+  try {
+    await axios.post(`${process.env.VITE_API_USER_URL}/teacher/${id}`, {
+      headers: { 'Content-type': 'application/json' }
+    }).then((response)=> {
+      if(response.status == 200) {
+        result = {
+          code: response.status,
+          data: new Teacher (response.data['_id'], response.data['fullName'], 
+            response.data['email'], response.data['password']
+          )
+        }
+      }
+    });
+  } catch (error: any) {
+    result = {
+      code: error.response.status,
+      data: error.response.data
+    }
+  }
+
+  return result
+}
+
 export const signUp = async (user: User) => {
   let result: { code: number, data: User | any } | null = null
 

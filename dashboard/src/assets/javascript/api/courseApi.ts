@@ -2,7 +2,7 @@ import axios from "axios"
 import { type ExerciseInterface, Exercise, createExerciseCollection } from "../models/exercise";
 import { type CourseInterface, Course } from "../models/course";
 
-export const getCourse = async (id:number) => {
+export const getCourse = async (id:string) => {
   let result: { code: number, data: Course | any } | null = null
 
   try {
@@ -29,7 +29,7 @@ export const getCourse = async (id:number) => {
   return result
 }
 
-export const getAllCourse = async (id:number) => {
+export const getAllCourse = async (id:string) => {
   let result: { code: number, data: Course | any } | null = null
 
   try {
@@ -88,7 +88,7 @@ export const createCourse = async (course:CourseInterface) => {
   return result
 }
 
-export const deleteCourse = async (id:number) => {
+export const deleteCourse = async (id:string) => {
   let result: { code: number, data: Course | any } | null = null
 
   try {
@@ -139,7 +139,7 @@ export const updateCourse = async (course:CourseInterface) => {
   return result
 }
 
-export const addExercise = async (id:number, exerciseId: number) => {
+export const addExercise = async (id:string, exerciseId: string) => {
   let result: { code: number, data: Course | any } | null = null
   
   try {
@@ -167,7 +167,7 @@ export const addExercise = async (id:number, exerciseId: number) => {
   return result
 }
 
-export const deleteExercise = async (id:number, exerciseId: number) => {
+export const deleteExercise = async (id:string, exerciseId: string) => {
   let result: { code: number, data: Course | any } | null = null
   
   try {
