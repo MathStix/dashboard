@@ -1,5 +1,5 @@
 import axios from "axios"
-import type { UpdateUser, User } from "../models/user"
+import { type UpdateUser, type User, Teacher } from "../models/user"
 
 export const signIn = async (user: User) => {
   let result: { code: number, data: User | any } | null = null
@@ -23,15 +23,11 @@ export const signIn = async (user: User) => {
       headers: { 'Content-type': 'application/json' }
     }).then((response)=> {
       if(response.status == 200) {
-        const user: User = {
-          _id: response.data['_id'],
-          fullName: response.data['fullName'],
-          email: response.data['email'],
-          password: response.data['password'],
-        }
         result = {
           code: response.status,
-          data: user
+          data: new Teacher (response.data['_id'], response.data['fullName'], 
+            response.data['email'], response.data['password']
+          )
         }
       }
     });
@@ -48,15 +44,15 @@ export const signIn = async (user: User) => {
 export const checkUser = async (id: string) => {
   let result: Boolean = false
   try {
-    if(id == '1'){
-      result = true
-    }else{
-      result = false
-    }
+    // if(id == '1'){
+    //   result = true
+    // }else{
+    //   result = false
+    // }
 
     // api call below
 
-    await axios.post(`${process.env.VITE_API_USER_URL}/check`, id,{
+    await axios.post(`${process.env.VITE_API_USER_URL}/teacher/${id}`, {
       headers: { 'Content-type': 'application/json' }
     }).then((response)=> {
       if(response.status == 200) {
@@ -78,15 +74,11 @@ export const signUp = async (user: User) => {
       headers: { 'Content-type': 'application/json' }
     }).then((response) => {
       if(response.status == 200) {
-        const user: User = {
-          _id: response.data['_id'],
-          fullName: response.data['fullName'],
-          email: response.data['email'],
-          password: response.data['password'],
-        }
         result = {
           code: response.status,
-          data: user
+          data: new Teacher (response.data['_id'], response.data['fullName'], 
+            response.data['email'], response.data['password']
+          )
         }
       }
     });
