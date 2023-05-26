@@ -36,6 +36,19 @@ const router = createRouter({
         }
       },
       component: () => import('../views/AccountView.vue')
+    },
+    {
+      path: '/updateAccount',
+      name: 'updateAccount',
+      beforeEnter: async(to, from, next) => {
+        if (await routeGuard() == false) {
+          next({ name: 'signIn' });
+          return false
+        } else {
+          next();
+        }
+      },
+      component: () => import('../views/EditAccountView.vue')
     }
   ]
 })
