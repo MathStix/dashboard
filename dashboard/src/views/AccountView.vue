@@ -7,8 +7,12 @@ import Header from '../components/Header.vue';
 const id:string | null = sessionStorage.getItem('user');
 let teacher: Teacher
 
+console.log(id);
+
 if(id){
+  console.log(id);
   const result = await getUser(id);
+  console.log(result)
   teacher = result?.data
 }
 </script>
@@ -32,7 +36,9 @@ if(id){
     <div class="row">
       <div class="col-md-6">
         <div class="btn-wrap">
-          <a href="#" class="btn btn-main">edit account</a>
+        <RouterLink :to="{name: 'updateAccount'}" class="btn btn-main">
+          edit account
+        </RouterLink>
         </div>
       </div>
       <div class="col-md-6">

@@ -6,7 +6,7 @@ export const getCourse = async (id:string) => {
   let result: { code: number, data: Course | any } | null = null
 
   try {
-    await axios.get(`${process.env.VITE_API_USER_URL}/course`, {
+    await axios.get(`${import.meta.env.VITE_API_USER_URL}/course`, {
       data: {'_id': id},
       headers: { 'Content-type': 'application/json' }
     }).then((response)=>{
@@ -33,7 +33,7 @@ export const getAllCourse = async (id:string) => {
   let result: { code: number, data: Course | any } | null = null
 
   try {
-    await axios.get(`${process.env.VITE_API_USER_URL}/course`, {
+    await axios.get(`${import.meta.env.VITE_API_USER_URL}/course`, {
       data: {'teacherId': id},
       headers: { 'Content-type': 'application/json' }
     }).then((response)=>{
@@ -66,7 +66,7 @@ export const createCourse = async (course:CourseInterface) => {
   let result: { code: number, data: Course | any } | null = null
 
   try {
-    await axios.post(`${process.env.VITE_API_USER_URL}/course`, course, {
+    await axios.post(`${import.meta.env.VITE_API_USER_URL}/course`, course, {
       headers: { 'Content-type': 'application/json' }
     }).then((response)=>{
       if(response.status == 201){
@@ -92,7 +92,7 @@ export const deleteCourse = async (id:string) => {
   let result: { code: number, data: Course | any } | null = null
 
   try {
-    await axios.delete(`${process.env.VITE_API_USER_URL}/course`, {
+    await axios.delete(`${import.meta.env.VITE_API_USER_URL}/course`, {
       data: {'_id': id},
       headers: { 'Content-type': 'application/json' }
     }).then((response)=>{
@@ -117,7 +117,7 @@ export const updateCourse = async (course:CourseInterface) => {
   let result: { code: number, data: Course | any } | null = null
 
   try {
-    await axios.put(`${process.env.VITE_API_USER_URL}/course`, course, {
+    await axios.put(`${import.meta.env.VITE_API_USER_URL}/course`, course, {
       headers: { 'Content-type': 'application/json' }
     }).then((response)=>{
       if(response.status == 201){
@@ -143,7 +143,7 @@ export const addExercise = async (id:string, exerciseId: string) => {
   let result: { code: number, data: Course | any } | null = null
   
   try {
-    await axios.post(`${process.env.VITE_API_USER_URL}/addexercise`, {
+    await axios.post(`${import.meta.env.VITE_API_USER_URL}/addexercise`, {
       data: {
         '_id': id,
         'exerciseId': exerciseId
@@ -171,7 +171,7 @@ export const deleteExercise = async (id:string, exerciseId: string) => {
   let result: { code: number, data: Course | any } | null = null
   
   try {
-    await axios.post(`${process.env.VITE_API_USER_URL}/removeexercise`, {
+    await axios.post(`${import.meta.env.VITE_API_USER_URL}/removeexercise`, {
       data: {
         '_id': id,
         'exerciseId': exerciseId

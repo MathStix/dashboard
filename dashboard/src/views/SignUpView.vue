@@ -147,11 +147,10 @@ export default defineComponent({
             if(!this.emailError && !this.passwordError && !this.confirmError && !this.nameError)
             {
                 const reslut = await signUp(new Teacher(null, this.name, this.email, this.password))
-                if(reslut?.code == 200){
-                    console.log(reslut.data)
+                if(reslut?.code == 201){
                     sessionStorage.setItem('user', reslut.data['_id']);
                     this.loading = false;
-                    // this.$router.push('home');
+                    this.$router.push('home');
                 }
             }
             this.loading = false
