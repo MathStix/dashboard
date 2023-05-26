@@ -3,7 +3,16 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <main>
-    <RouterView />
-  </main>
+  <Suspense>
+    <!-- component with nested async dependencies -->
+    <main>
+      <RouterView />
+    </main>
+
+    <!-- loading state via #fallback slot -->
+    <template #fallback>
+      Loading...
+    </template>
+  </Suspense>
+  
 </template>
