@@ -93,8 +93,10 @@ export default defineComponent({
       
       if(!this.emailError && !this.passwordError){
         const res = await signIn(new Teacher(null, '', this.email, this.password))
+        console.log(res);
         if(res?.code == 200){
-          sessionStorage.setItem('user', '1');
+          console.log(res.data)
+          sessionStorage.setItem('user', res.data['_id']);
           this.loading = false;
           this.$router.push('home');
         }

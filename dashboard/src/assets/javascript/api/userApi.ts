@@ -5,23 +5,10 @@ export const signIn = async (user: User) => {
   let result: { code: number, data: User | any } | null = null
 
   try {
-    // if(user.email == 'admin@admin.com' && user.password == 'adminadmin'){
-    //   result = {
-    //     code: 200,
-    //     data: 'in',
-    //   }
-    // }else{
-    //   result = {
-    //     code: 400,
-    //     data: 'uit',
-    //   }
-    // }
-
-    // api call below
-
-    await axios.post(`${process.env.VITE_API_USER_URL}/login`, user,{
+    await axios.post(`${import.meta.env.VITE_API_USER_URL}/login`, user,{
       headers: { 'Content-type': 'application/json' }
     }).then((response)=> {
+      console.log(response)
       if(response.status == 200) {
         result = {
           code: response.status,
@@ -44,15 +31,7 @@ export const signIn = async (user: User) => {
 export const checkUser = async (id: string) => {
   let result: Boolean = false
   try {
-    // if(id == '1'){
-    //   result = true
-    // }else{
-    //   result = false
-    // }
-
-    // api call below
-
-    await axios.post(`${process.env.VITE_API_USER_URL}/teacher/${id}`, {
+    await axios.get(`${import.meta.env.VITE_API_USER_URL}/teacher/${id}`, {
       headers: { 'Content-type': 'application/json' }
     }).then((response)=> {
       if(response.status == 200) {
@@ -69,7 +48,7 @@ export const checkUser = async (id: string) => {
 export const getUser = async (id: string) => {
   let result: { code: number, data: User | any } | null = null
   try {
-    await axios.post(`${process.env.VITE_API_USER_URL}/teacher/${id}`, {
+    await axios.get(`${import.meta.env.VITE_API_USER_URL}/teacher/${id}`, {
       headers: { 'Content-type': 'application/json' }
     }).then((response)=> {
       if(response.status == 200) {
@@ -95,12 +74,10 @@ export const signUp = async (user: User) => {
   let result: { code: number, data: User | any } | null = null
 
   try {
-    console.log(`${import.meta.env.VITE_API_USER_URL}/teacher`);
     await axios.post(`${import.meta.env.VITE_API_USER_URL}/teacher`, user, {
       headers: { 'Content-type': 'application/json' }
     }).then((response) => {
-      if(response.status == 200) {
-        console.log(response.data)
+      if(response.status == 201) {
         result = {
           code: response.status,
           data: new Teacher (response.data['_id'], response.data['fullName'], 
@@ -108,9 +85,14 @@ export const signUp = async (user: User) => {
           )
         }
       }
+      else{
+        result = {
+          code: response.status,
+          data: response.data
+        }
+      }
     });
   } catch (error: any) {
-    console.log(error)
     result = {
       code: 400,
       data: 'nope'
@@ -149,7 +131,7 @@ export const updateUser = async (user:UpdateUser) => {
   let result: { code: number, data: User | any } | null = null
 
   try {
-    await axios.put(`${process.env.VITE_API_USER_URL}/login`, user,{
+    await axios.put(`${import.meta.env.VITE_API_USER_URL}/login`, user,{
       headers: { 'Content-type': 'application/json' }
     }).then((response)=>{
       if(response.status == 201){

@@ -5,14 +5,6 @@ import {validateEmail, errEmailEmp, errEmail,
 } from '../assets/javascript/validation';
 import { Teacher, UpdateTeacher } from "../assets/javascript/models/user";
 import Header from '../components/Header.vue';
-
-const id:string | null = sessionStorage.getItem('user');
-let teacher: Teacher
-
-if(id){ 
-  const result = await getUser(id);
-  teacher = result?.data
-}
 </script>
 
 <template>
@@ -136,10 +128,11 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   data() {
     return {
-      id: teacher._id!,
-      name: teacher.fullName!,
+      teacher: null as Teacher | null,
+      id: '',
+      name: '',
       nameError: '',
-      email: teacher.email!,
+      email: '',
       emailError: '',
       password: '',
       passwordError: '',
@@ -148,6 +141,19 @@ export default defineComponent({
       oldPass: '',
       oldPassError: '',
       loading: false,
+    }
+  },
+  async beforeMount() {
+    const id:string | null = sessionStorage.getItem('user');
+    let teacher: Teacher
+
+    if(id){ 
+      const result = await getUser(id);
+      teacher = result?.data
+      this.teacher = teacher;
+
+      this.name = this.teacher.fullName!
+      this.email = this.teacher.email!
     }
   },
   methods: {
@@ -184,7 +190,7 @@ export default defineComponent({
         && !this.nameError && !this.oldPassError)
       {
 
-        const reslut = await updateUser(new UpdateTeacher(teacher._id!, this.name, 
+        const reslut = await updateUser(new UpdateTeacher(this.teacher!._id!, this.name, 
           this.email, this.password, this.oldPass)
         )
         if(reslut?.code == 200){

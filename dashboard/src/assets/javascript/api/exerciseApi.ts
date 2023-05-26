@@ -5,7 +5,7 @@ export const createExercise = async (exercide:ExerciseInterface) => {
   let result: { code: number, data: Exercise | any } | null = null
   
   try {
-    await axios.post(`${process.env.VITE_API_USER_URL}/exercise`, exercide, {
+    await axios.post(`${import.meta.env.VITE_API_USER_URL}/exercise`, exercide, {
       headers: { 'Content-type': 'application/json' }
     }).then((response)=>{
       if(response.status == 201){
@@ -32,7 +32,7 @@ export const getExercise = async (id:number) => {
   let result: { code: number, data: Exercise | any } | null = null
   
   try {
-    await axios.get(`${process.env.VITE_API_USER_URL}/exercise`, {
+    await axios.get(`${import.meta.env.VITE_API_USER_URL}/exercise`, {
       data: {'_id': id},
       headers: { 'Content-type': 'application/json' }
     }).then((response)=>{
@@ -60,7 +60,7 @@ export const getAll = async (id:number) => {
   let result: { code: number, data: Exercise[] | any } | null = null
   
   try {
-    await axios.get(`${process.env.VITE_API_USER_URL}/getallexercises`, {
+    await axios.get(`${import.meta.env.VITE_API_USER_URL}/getallexercises`, {
       data: {'teacherId': id},
       headers: { 'Content-type': 'application/json' }
     }).then((response)=>{
@@ -85,7 +85,7 @@ export const deleteExercise = async (id:number) => {
   let result: { code: number, data: Exercise | any } | null = null
 
   try {
-    await axios.delete(`${process.env.VITE_API_USER_URL}/exercise`, {
+    await axios.delete(`${import.meta.env.VITE_API_USER_URL}/exercise`, {
       data: {'_id': id},
       headers: { 'Content-type': 'application/json' }
     }).then((response)=>{
@@ -110,7 +110,7 @@ export const updateExercise = async (exercise:ExerciseInterface) => {
   let result: { code: number, data: Exercise | any } | null = null
 
   try {
-    await axios.put(`${process.env.VITE_API_USER_URL}/exercise`, exercise,{
+    await axios.put(`${import.meta.env.VITE_API_USER_URL}/exercise`, exercise,{
       headers: { 'Content-type': 'application/json' }
     }).then((response)=>{
       if(response.status == 201){

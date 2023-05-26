@@ -1,9 +1,9 @@
 import {checkUser} from './api/userApi';
 
 export const routeGuard = async () => {
-  const userId: string | null = JSON.parse(sessionStorage.getItem('user') || '{}');
-  if(userId != null){
-    if(await checkUser(userId)){
+  const idRaw = sessionStorage.getItem('user')
+  if(idRaw != null){
+    if(await checkUser(idRaw)){
       return true;
     }
   }
