@@ -56,6 +56,12 @@
               </button>
             </div>
           </form>
+          <p class="mt-3">
+            Dont have an account yet?
+            <RouterLink :to="{name: 'SignUp'}">
+              Sign up
+            </RouterLink>
+          </p>
         </div>
       </div>
     </div>
@@ -66,6 +72,7 @@
 import { defineComponent } from 'vue';
 import {validateEmail, errEmailEmp, errEmail, errPassEmp, errSubmit} from '../assets/javascript/validation';
 import { signIn } from '../assets/javascript/api/userApi';
+import { Teacher } from "../assets/javascript/models/user";
 
 export default defineComponent({
   data() {
@@ -85,13 +92,7 @@ export default defineComponent({
       this.checkPassword();
       
       if(!this.emailError && !this.passwordError){
-        const res = await signIn({
-          id: null,
-          fullName: null,
-          email: this.email,
-          password: this.password
-        });
-
+        const res = await signIn(new Teacher(null, '', this.email, this.password))
         if(res?.code == 200){
           sessionStorage.setItem('user', '1');
           this.loading = false;

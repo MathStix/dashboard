@@ -49,6 +49,7 @@ const router = createRouter({
         }
       },
       component: () => import('../views/EditAccountView.vue')
+    },
     {
       path: '/SignUp',
       name: 'SignUp',

@@ -19,7 +19,7 @@ export class Teacher implements User {
   email: string | null;
   password: string | null;
 
-  constructor(id: number, name: string, email: string, password: string){
+  constructor(id: number | null, name: string, email: string, password: string){
     this._id = id;
     this.fullName = name;
     this.email = email;

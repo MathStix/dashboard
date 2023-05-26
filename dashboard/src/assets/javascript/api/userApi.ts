@@ -95,10 +95,12 @@ export const signUp = async (user: User) => {
   let result: { code: number, data: User | any } | null = null
 
   try {
-    await axios.post(`${process.env.VITE_API_USER_URL}/teacher`, user, {
+    console.log(`${import.meta.env.VITE_API_USER_URL}/teacher`);
+    await axios.post(`${import.meta.env.VITE_API_USER_URL}/teacher`, user, {
       headers: { 'Content-type': 'application/json' }
     }).then((response) => {
       if(response.status == 200) {
+        console.log(response.data)
         result = {
           code: response.status,
           data: new Teacher (response.data['_id'], response.data['fullName'], 
@@ -108,9 +110,10 @@ export const signUp = async (user: User) => {
       }
     });
   } catch (error: any) {
+    console.log(error)
     result = {
-      code: error.response.status,
-      data: error.response.data
+      code: 400,
+      data: 'nope'
     }
   }
 
@@ -121,7 +124,7 @@ export const deleteAccount = async (user:User) => {
   let result: { code: number, data: User | any } | null = null
 
   try {
-    await axios.delete(`${process.env.VITE_API_USER_URL}/teacher`, {
+    await axios.delete(`${import.meta.env.VITE_API_USER_URL}/teacher`, {
       data: user,
       headers: { 'Content-type': 'application/json' }
     }).then((response) => {
