@@ -33,7 +33,7 @@ export const getAllCourse = async (id:string) => {
   let result: { code: number, data: Course | any } | null = null
 
   try {
-    await axios.get(`${import.meta.env.VITE_API_USER_URL}/course`, {
+    await axios.get(`${import.meta.env.VITE_API_USER_URL}/getallcourses`, {
       data: {'teacherId': id},
       headers: { 'Content-type': 'application/json' }
     }).then((response)=>{

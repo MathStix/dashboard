@@ -33,6 +33,13 @@ export class Exercise implements ExerciseInterface {
       this.exerciseType = type;
       this.teacherId = teacherId;
   }
+
+  getImage = ():string  => {
+    const img = new Image()
+    img.src = "data:image/png;base64," + this.photo
+
+    return img.src
+  }
 }
 
 export const createExerciseCollection = (data: any): Exercise[] => {

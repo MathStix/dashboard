@@ -56,7 +56,7 @@ export const getExercise = async (id:number) => {
   return result;
 }
 
-export const getAll = async (id:number) => {
+export const getAll = async (id:string) => {
   let result: { code: number, data: Exercise[] | any } | null = null
   
   try {

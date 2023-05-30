@@ -56,7 +56,7 @@
               </button>
             </div>
           </form>
-          <p class="mt-3">
+          <p class="mt-5 text-center">
             Dont have an account yet?
             <RouterLink :to="{name: 'SignUp'}">
               Sign up
