@@ -24,9 +24,13 @@ import 'ol/ol.css'
       <input type="file" name="" id="">
       
     </form> -->
-    <div id="map-root" style="width: 100%; height: 500px" />
+    <div class="space" style="width: 100%;">
+      <h1 class="mt-5 pt-3">{{ position }}</h1>
 
-    <div id="marker"></div>
+      <div id="map-root" style="width: 100%; min-width: 100%; height: 500px" />
+
+      <div id="marker"></div>
+    </div>
   </section>
 </template>
 
@@ -81,14 +85,15 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
-#marker {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background:url(https://cdn1.iconfinder.com/data/icons/Map-Markers-Icons-Demo-PNG/256/Map-Marker-Marker-Outside-Azure.png) no-repeat top center;
-  background-size:100%;
-  opacity: 1;
-  cursor: move;
-}
+<style lang="scss" scoped>
+  @import "../assets/styles/pages/home.scss";
+  #marker {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background:url(https://cdn1.iconfinder.com/data/icons/Map-Markers-Icons-Demo-PNG/256/Map-Marker-Marker-Outside-Azure.png) no-repeat top center;
+    background-size:100%;
+    opacity: 1;
+    cursor: move;
+  }
 </style>
