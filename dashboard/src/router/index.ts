@@ -51,6 +51,32 @@ const router = createRouter({
       component: () => import('../views/EditAccountView.vue')
     },
     {
+      path: '/exercises',
+      name: 'exercises',
+      beforeEnter: async(to, from, next) => {
+        if (await routeGuard() == false) {
+          next({ name: 'signIn' });
+          return false
+        } else {
+          next();
+        }
+      },
+      component: () => import('../views/ExerciseView.vue')
+    },
+    {
+      path: '/add-exercises',
+      name: 'addExercises',
+      beforeEnter: async(to, from, next) => {
+        if (await routeGuard() == false) {
+          next({ name: 'signIn' });
+          return false
+        } else {
+          next();
+        }
+      },
+      component: () => import('../views/AddExerciseView.vue')
+    },
+    {
       path: '/SignUp',
       name: 'SignUp',
       component: () => import('../views/SignUpView.vue')

@@ -11,7 +11,9 @@
           <a href="#">Courses</a>
         </li>
         <li>
-          <a href="#">Exercises</a>
+          <RouterLink :to="{name: 'exercises'}">
+            Exercises
+          </RouterLink>
         </li>
       </ul>
     </nav>

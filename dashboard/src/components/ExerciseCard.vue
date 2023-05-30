@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { Course } from '../assets/javascript/models/course';
+import { Exercise } from '@/assets/javascript/models/exercise';
 
 defineProps({
-  course: {
-    type: Course,
+  exercise: {
+    type: Exercise,
     required: true,
   }
 });
@@ -13,9 +13,10 @@ defineProps({
   <div class="card">
     <div class="inner">
       <div class="img-wap">
-        <img src="https://placehold.co/600x400" alt="game-img">
+        <img :src="exercise.getImage()" alt="game-img">
       </div>
-      <p>{{ course.description }}</p>  
+      <p>{{ exercise.title }}</p>
+      <p>{{ exercise.description }}</p>  
       <a class="btn btn-main mt-4">
         <span>
           View
