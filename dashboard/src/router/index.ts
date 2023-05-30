@@ -12,14 +12,6 @@ const router = createRouter({
       component: SignInView
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    },
-    {
       path: '/home',
       name: 'home',
       beforeEnter: async(to, from, next) => {
@@ -32,6 +24,37 @@ const router = createRouter({
       },
       component: () => import('../views/HomeView.vue')
     },
+    {
+      path: '/account',
+      name: 'account',
+      beforeEnter: async(to, from, next) => {
+        if (await routeGuard() == false) {
+          next({ name: 'signIn' });
+          return false
+        } else {
+          next();
+        }
+      },
+      component: () => import('../views/AccountView.vue')
+    },
+    {
+      path: '/updateAccount',
+      name: 'updateAccount',
+      beforeEnter: async(to, from, next) => {
+        if (await routeGuard() == false) {
+          next({ name: 'signIn' });
+          return false
+        } else {
+          next();
+        }
+      },
+      component: () => import('../views/EditAccountView.vue')
+    },
+    {
+      path: '/SignUp',
+      name: 'SignUp',
+      component: () => import('../views/SignUpView.vue')
+    }
   ]
 })
 
