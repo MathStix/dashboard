@@ -7,12 +7,9 @@ import Header from '../components/Header.vue';
 const id:string | null = sessionStorage.getItem('user');
 let teacher: Teacher
 
-console.log(id);
 
 if(id){
-  console.log(id);
   const result = await getUser(id);
-  console.log(result)
   teacher = result?.data
 }
 </script>

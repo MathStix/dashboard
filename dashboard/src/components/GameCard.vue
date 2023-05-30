@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { type CourseInterface, Course } from '../assets/javascript/models/course';
+
 defineProps({
-  Descriptin: {
-    type: String,
+  course: {
+    type: Course,
     required: true,
-  },
+  }
 });
 </script>
 
@@ -13,7 +15,7 @@ defineProps({
       <div class="img-wap">
         <img src="https://placehold.co/600x400" alt="game-img">
       </div>
-      <p>{{ Descriptin }}</p>  
+      <p>{{ course.description }}</p>  
       <a class="btn btn-main mt-4">
         <span>
           View

@@ -4,14 +4,14 @@
       <ul>
         <li>
           <RouterLink :to="{name: 'home'}">
-            home
+            Home
           </RouterLink>
         </li>
         <li>
-          <a href="#">home</a>
+          <a href="#">Courses</a>
         </li>
         <li>
-          <a href="#">home</a>
+          <a href="#">Exercises</a>
         </li>
       </ul>
     </nav>
