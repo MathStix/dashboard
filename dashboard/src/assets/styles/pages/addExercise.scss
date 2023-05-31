@@ -1,0 +1,42 @@
+@import '../colors';
+@import '../fonts/nunito';
+@import '../fonts/roboto';
+
+#marker {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background:url(https://cdn1.iconfinder.com/data/icons/Map-Markers-Icons-Demo-PNG/256/Map-Marker-Marker-Outside-Azure.png) no-repeat top center;
+  background-size:100%;
+  opacity: 1;
+  cursor: move;
+}
+
+.pacer{
+  padding: 0 40px 40px;
+}
+
+.form-group{
+  label{
+    font-family: $roboto;
+    font-weight: $r-regular;
+    color: $white;
+    font-size: 20px;
+  }
+
+  input, textarea, select{
+    font-family: $roboto;
+    font-weight: $r-regular;
+    font-size: 20px;
+  }
+
+  textarea{
+    resize: none;
+  }
+
+  .btn{
+    span{
+      font-size: 20px;
+    }
+  }
+}
