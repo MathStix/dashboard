@@ -77,6 +77,7 @@ export const signUp = async (user: User) => {
     await axios.post(`${import.meta.env.VITE_API_USER_URL}/teacher`, user, {
       headers: { 'Content-type': 'application/json' }
     }).then((response) => {
+      console.log(response)
       if(response.status == 201) {
         result = {
           code: response.status,
