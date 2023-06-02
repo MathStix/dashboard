@@ -16,38 +16,40 @@ if(id){
 
 <template>
   <Header/>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <h1>
-          Account info
-        </h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12 text-center">
-        <p>name: {{ teacher.fullName }}</p>
-        <p>email: {{ teacher.email }}</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="btn-wrap">
-        <RouterLink :to="{name: 'updateAccount'}" class="btn btn-main">
-          edit account
-        </RouterLink>
+  <div class="page-wrap">
+    <div class="container mt-5 pt-5">
+      <div class="row mt-5 pt-5">
+        <div class="col-md-12 text-center">
+          <h1>
+            Account info
+          </h1>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="btn-wrap">
-          <a @click="openModel(teacher._id!.toString())" class="btn btn-main">delete account</a>
+      <div class="row">
+        <div class="col-12 text-center">
+          <p>name: {{ teacher.fullName }}</p>
+          <p>email: {{ teacher.email }}</p>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-3 d-flex justify-content-center">
+          <div class="btn-wrap">
+          <RouterLink :to="{name: 'updateAccount'}" class="btn btn-main">
+            edit account
+          </RouterLink>
+          </div>
+        </div>
+        <div class="col-md-3 d-flex justify-content-center">
+          <div class="btn-wrap">
+            <a @click="openModel()" class="btn btn-main">delete account</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="wrapper" v-auto-animate>
-    <div class="delete-modal" :class="modalToggle" @click="closeModal">
+    <div class="delete-modal" :class="modalToggle" @click="closeModal" v-if="modalToggle == 'open'">
       <div @click.stop class="modal-wrap">
         <div class="custom-modal-head">
           <h5>Delete Account</h5>
@@ -58,13 +60,13 @@ if(id){
             Are you sure you want to delete your account?
           </p>
         </div>
-        <div class="custom-modal-footer">
+        <div class="custom-modal-footer" v-auto-animate>
           <div class="row">
             <div class="col-md-6">
               <button type="button" class="btn btn-custom" @click="closeModal">Cancel</button>
             </div>
             <div class="col-md-6">
-              <button type="button" class="btn btn-custom-red" @click="openForm = true">Delete</button>
+              <button type="button" class="btn btn-custom-red" @click="()=>{openForm = true}">Delete</button>
             </div>
           </div>
           <div class="form" v-if="openForm">
@@ -133,7 +135,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   data() {
     return {
-      id: '',
+      _id: '',
       email: '',
       emailError: '',
       password: '',
@@ -144,12 +146,12 @@ export default defineComponent({
     }
   },
   methods: {
-    openModel(Id: string) {
-      this.id = Id,
+    openModel() {
+      this._id = sessionStorage.getItem('user')!,
       this.modalToggle = 'open'
     },
     closeModal() {
-      this.id = '',
+      this._id = '',
       this.modalToggle = 'hide'
     },
     checkEmail(){
@@ -180,5 +182,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-  @import "../assets/styles/pages/home.scss";
+  @import "../assets/styles/pages/account.scss";
 </style>
