@@ -58,19 +58,26 @@ export const getExercise = async (id:number) => {
 
 export const getAll = async (id:string) => {
   let result: { code: number, data: Exercise[] | any } | null = null
-  
+  const options = {
+    method: 'GET',
+    url: `${import.meta.env.VITE_API_USER_URL}/getallexercises`,
+    headers: {'Content-Type': 'application/json'},
+    data: {"teacherId": id}
+  };
+
   try {
-    await axios.get(`${import.meta.env.VITE_API_USER_URL}/getallexercises`, {
-      data: {'teacherId': id},
-      headers: { 'Content-type': 'application/json' }
-    }).then((response)=>{
-      if(response.status == 200){
+
+    await axios.request(options)
+      .then((response) => {
         result = {
           code: response.status,
           data: createExerciseCollection(response.data)
         }
-      }
-    })
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
   } catch (error: any) {
     result = {
       code: error.response.status,

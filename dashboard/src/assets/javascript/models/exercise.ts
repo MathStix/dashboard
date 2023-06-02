@@ -49,7 +49,7 @@ export class Exercise implements ExerciseInterface {
         .replace('data:', '')
         .replace(/^.+,/, '');
 
-      this.photo = base64String
+      this.photo = base64String.toString()
     };
     reader.readAsDataURL(file);
 
