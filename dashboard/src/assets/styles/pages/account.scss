@@ -24,6 +24,10 @@
   pointer-events: none;
 }
 
+.btn{
+  width: fit-content;
+}
+
 .delete-modal{
   pointer-events: all;
   background: $gradiant2;

@@ -1,19 +1,3 @@
-<script setup lang="ts">
-import { getUser, deleteAccount } from "../assets/javascript/api/userApi";
-import {validateEmail, errEmailEmp, errEmail, errPassEmp, errSubmit} from '../assets/javascript/validation';
-import { Teacher } from "../assets/javascript/models/user";
-import Header from '../components/Header.vue';
-
-const id:string | null = sessionStorage.getItem('user');
-let teacher: Teacher
-
-
-if(id){
-  const result = await getUser(id);
-  teacher = result?.data
-}
-</script>
-
 <template>
   <Header/>
   <div class="page-wrap">
@@ -27,8 +11,8 @@ if(id){
       </div>
       <div class="row">
         <div class="col-12 text-center">
-          <p>name: {{ teacher.fullName }}</p>
-          <p>email: {{ teacher.email }}</p>
+          <p>name: {{ teacher!.fullName }}</p>
+          <p>email: {{ teacher!.email }}</p>
         </div>
       </div>
       <div class="row justify-content-center mt-5">
@@ -131,6 +115,10 @@ if(id){
 </template>
 
 <script lang="ts">
+import { getUser, deleteAccount } from "../assets/javascript/api/userApi";
+import {validateEmail, errEmailEmp, errEmail, errPassEmp, errSubmit} from '../assets/javascript/validation';
+import { Teacher } from "../assets/javascript/models/user";
+import Header from '../components/Header.vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
   data() {
@@ -142,7 +130,21 @@ export default defineComponent({
       passwordError: '',
       modalToggle: 'hide',
       loading: false,
-      openForm: false
+      openForm: false,
+    }
+  },
+  components: {
+    Header
+  },
+  async setup(){
+    const id:string | null = sessionStorage.getItem('user');
+    let teacher: Teacher
+
+    const result = await getUser(id!);
+    teacher = result?.data
+
+    return{
+      teacher
     }
   },
   methods: {
@@ -168,11 +170,12 @@ export default defineComponent({
       this.checkPassword()
 
       if(!this.emailError && !this.passwordError){
-        teacher.email = this.email
-        teacher.password = this.password
-        const reslut = await deleteAccount(teacher)
+        console.log(this.teacher)
+        this.teacher!.email = this.email
+        this.teacher!.password = this.password
+        const reslut = await deleteAccount(this.teacher)
         if(reslut?.code == 200){
-          this.$router.push('signIn');
+          this.$router.push({name: 'signIn'});
         }
       }
       this.loading = false
