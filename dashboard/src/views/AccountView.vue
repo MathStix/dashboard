@@ -154,6 +154,7 @@ export default defineComponent({
     },
     closeModal() {
       this._id = '',
+      this.openForm = false;
       this.modalToggle = 'hide'
     },
     checkEmail(){
