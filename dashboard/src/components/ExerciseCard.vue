@@ -30,11 +30,11 @@ defineProps({
       <p>{{ exercise.title }}</p>
       <p>{{ exercise.description }}</p>  
       <div class="wrap d-flex justify-contant-between">
-        <a class="btn btn-main mt-4">
+        <RouterLink class="btn btn-main mt-4" :to="{name: 'exerciseDetail', params:{id: exercise._id}}">
           <span>
             View
           </span>
-        </a>
+        </RouterLink>
         <a class="btn btn-main mt-4" v-if="addable" @click="$emit('addToCourse', exercise._id)">
           <span>
             Add to course

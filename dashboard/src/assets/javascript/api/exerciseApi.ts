@@ -26,11 +26,11 @@ export const createExercise = async (exercide:ExerciseInterface) => {
   return result
 }
 
-export const getExercise = async (id:number) => {
+export const getExercise = async (id:string) => {
   let result: { code: number, data: Exercise | any } | null = null
   
   try {
-    await axios.request(options('GET', '/exercise', {'_id': id}))
+    await axios.request(options('GET', `/exercise/${id}`, null))
       .then((response)=>{
         result = {
           code: response.status,
@@ -71,7 +71,7 @@ export const getAll = async (id:string) => {
   return result;
 }
 
-export const deleteExercise = async (id:number) => {
+export const deleteExercise = async (id:string) => {
   let result: { code: number, data: Exercise | any } | null = null
 
   try {

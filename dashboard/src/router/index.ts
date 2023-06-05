@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import SignInView from '@/views/SignInView.vue';
-import { checkCourse, routeGuard } from '@/assets/javascript/guard';
+import { checkCourse, checkExercise, routeGuard } from '@/assets/javascript/guard';
 
 
 const router = createRouter({
@@ -141,6 +141,26 @@ const router = createRouter({
         }
       },
       component: () => import('../views/CourseDetailView.vue')
+    },
+    {
+      path: '/exercise-details/:id',
+      name: 'exerciseDetail',
+      beforeEnter: async(to, from, next) => {
+        if (await routeGuard() == true) {
+          const reslut = await checkExercise(to.params.id.toString())
+          if(reslut){
+            next();
+          }
+          else{
+            next({ name: 'home' });
+            return false
+          }
+        } else {
+          next({ name: 'signIn' });
+          return false
+        }
+      },
+      component: () => import('../views/ExerciseDetailView.vue')
     },
     {
       path: '/SignUp',
