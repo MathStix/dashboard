@@ -43,9 +43,9 @@ export class Exercise implements ExerciseInterface {
   genarateBase64 = (file: any) => {
     console.log(file)
     const reader = new FileReader()
-    reader.onloadend = () => {
+    reader.onloadend = async () => {
       
-      const base64String = (<string>reader.result)
+      const base64String = await (<string>reader.result)
         .replace('data:', '')
         .replace(/^.+,/, '');
 
@@ -59,11 +59,13 @@ export class Exercise implements ExerciseInterface {
 export const createExerciseCollection = (data: any): Exercise[] => {
   const exercises = [] as Exercise[]
 
-  for (let i = 0; i < data.length; i++) {
-    exercises.push(new Exercise(
-      data[i]['_id'], data[i]['title'], data[i]['description'], data[i]['answer'], 
-      data[i]['location'], data[i]['photo'], data[i]['activationRange'], data[i]['exerciseType'], null
-    ))
+  if(data){
+    for (let i = 0; i < data.length; i++) {
+      exercises.push(new Exercise(
+        data[i]['_id'], data[i]['title'], data[i]['description'], data[i]['answer'], 
+        data[i]['location'], data[i]['photo'], data[i]['activationRange'], data[i]['exerciseType'], null
+      ))
+    }
   }
 
   return exercises

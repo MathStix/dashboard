@@ -7,11 +7,11 @@ export const getCourse = async (id:string) => {
   let result: { code: number, data: Course | any } | null = null
 
   try {
-    await axios.request(options('GET', '/course', {'_id': id}))
+    await axios.request(options('GET', `/course/${id}`, null))
       .then((response)=>{
         result = {
           code: response.status,
-          data: new Course(response.data['_id'], response.data['description'], 
+          data: new Course(response.data['_id'], response.data['title'], response.data['description'], 
             response.data['teacherId'], createExerciseCollection(response.data['exercises'])
           )
         }
@@ -30,12 +30,13 @@ export const getAllCourse = async (id:string) => {
   let result: { code: number, data: Course | any } | null = null
 
   try {
-    await axios.request(options('GET', '/getallcourses', {'teacherId': id}))
+    await axios.request(options('GET', `/getallcourses/${id}`, null))
       .then((response)=>{
+        console.log(response)
         const courses = [] as Course[];
 
         for (let i = 0; i < response.data.length; i++) {
-          courses.push(new Course(response.data['_id'], response.data['description'], 
+          courses.push(new Course(response.data['_id'], response.data['title'], response.data['description'], 
             response.data['teacherId'], createExerciseCollection(response.data['exercises']))
           )
         }
@@ -46,9 +47,10 @@ export const getAllCourse = async (id:string) => {
         }
       })
   } catch (error: any) {
+    console.log(error)
     result = {
-      code: error.response.status,
-      data: error.response.data
+      code: 0,
+      data: 'error'
     }
   }
 
@@ -63,7 +65,7 @@ export const createCourse = async (course:CourseInterface) => {
       .then((response)=>{
         result = {
           code: response.status,
-          data: new Course(response.data['_id'], response.data['description'], 
+          data: new Course(response.data['_id'], response.data['title'], response.data['description'], 
             response.data['teacherId'], createExerciseCollection(response.data['exercises'])
           )
         }
@@ -107,7 +109,7 @@ export const updateCourse = async (course:CourseInterface) => {
       .then((response)=>{
         result = {
           code: response.status,
-          data: new Course(response.data['_id'], response.data['description'], 
+          data: new Course(response.data['_id'], response.data['title'], response.data['description'], 
             response.data['teacherId'], createExerciseCollection(response.data['exercises'])
           )
         }

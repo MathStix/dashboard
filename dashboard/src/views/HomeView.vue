@@ -11,7 +11,7 @@ const result = await getAllCourse(id!);
 const courses: Course[] = result?.data
 
 let message = false
-if(courses.length <= 0){
+if(courses.length > 0){
   message = true
 }
 </script>
