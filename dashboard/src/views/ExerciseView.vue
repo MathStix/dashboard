@@ -9,7 +9,7 @@ const result = await getAll(id!);
 const exercises: Exercise[] = result?.data
 
 let message = false
-if(exercises.length <= 0){
+if(exercises.length > 0){
   message = true
 }
 </script>

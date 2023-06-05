@@ -123,6 +123,26 @@ const router = createRouter({
       component: () => import('../views/AddCourseView.vue')
     },
     {
+      path: '/course-details/:id',
+      name: 'courseDetail',
+      beforeEnter: async(to, from, next) => {
+        if (await routeGuard() == true) {
+          const reslut = await checkCourse(to.params.id.toString())
+          if(reslut){
+            next();
+          }
+          else{
+            next({ name: 'home' });
+            return false
+          }
+        } else {
+          next({ name: 'signIn' });
+          return false
+        }
+      },
+      component: () => import('../views/CourseDetailView.vue')
+    },
+    {
       path: '/SignUp',
       name: 'SignUp',
       component: () => import('../views/SignUpView.vue')
