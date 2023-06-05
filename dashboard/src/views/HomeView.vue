@@ -4,13 +4,14 @@ import GameCard from '../components/GameCard.vue';
 import { getUser } from "../assets/javascript/api/userApi";
 import { getAllCourse } from '@/assets/javascript/api/courseApi';
 import { Course } from '@/assets/javascript/models/course';
+import {StartGameTemp} from '@/assets/javascript/api/exerciseApi' 
 
 const id:string | null = sessionStorage.getItem('user');
 const result = await getAllCourse(id!);
 const courses: Course[] = result?.data
 
 let message = false
-if(courses.length <= 0){
+if(courses.length > 0){
   message = true
 }
 </script>
@@ -22,9 +23,9 @@ if(courses.length <= 0){
       <div class="container-fluid pacer">
         <div class="inner-wrap">
           <div class="btn-wrap">
-            <a class="btn btn-main mt-4">
+            <a class="btn btn-main mt-4" @click="startGame">
               <span>
-                Start new game
+                Start new (HartCode) game
               </span>
             </a>
           </div>
@@ -56,6 +57,19 @@ if(courses.length <= 0){
     </div>
   </section>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  methods: {
+    async startGame(){
+      const result = await StartGameTemp('64649b1ec128098626f846f9')
+      console.log(result);
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
   @import "../assets/styles/pages/home.scss";

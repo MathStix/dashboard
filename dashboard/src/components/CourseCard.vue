@@ -1,20 +1,18 @@
 <script setup lang="ts">
-import { Course } from '../assets/javascript/models/course';
+import { Course } from '@/assets/javascript/models/course';
 
 defineProps({
   course: {
     type: Course,
     required: true,
   }
-});
+})
 </script>
 
 <template>
-  <div class="card">
+<div class="card" v-if="course">
     <div class="inner">
-      <div class="img-wap">
-        <img src="https://placehold.co/600x400" alt="game-img">
-      </div>
+      <p>{{ course.title }}</p>
       <p>{{ course.description }}</p>  
       <a class="btn btn-main mt-4">
         <span>
@@ -24,7 +22,3 @@ defineProps({
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-@import "../assets/styles/components/game-card.scss";
-</style>

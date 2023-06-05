@@ -8,10 +8,14 @@
           </RouterLink>
         </li>
         <li>
-          <a href="#">Courses</a>
+          <RouterLink :to="{name: 'courses'}">
+            Courses
+          </RouterLink>
         </li>
         <li>
-          <a href="#">Exercises</a>
+          <RouterLink :to="{name: 'exercises'}">
+            Exercises
+          </RouterLink>
         </li>
       </ul>
     </nav>

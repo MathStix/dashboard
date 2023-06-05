@@ -1,53 +1,39 @@
-<script setup lang="ts">
-import { getUser, deleteAccount } from "../assets/javascript/api/userApi";
-import {validateEmail, errEmailEmp, errEmail, errPassEmp, errSubmit} from '../assets/javascript/validation';
-import { Teacher } from "../assets/javascript/models/user";
-import Header from '../components/Header.vue';
-
-const id:string | null = sessionStorage.getItem('user');
-let teacher: Teacher
-
-
-if(id){
-  const result = await getUser(id);
-  teacher = result?.data
-}
-</script>
-
 <template>
   <Header/>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <h1>
-          Account info
-        </h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12 text-center">
-        <p>name: {{ teacher.fullName }}</p>
-        <p>email: {{ teacher.email }}</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="btn-wrap">
-        <RouterLink :to="{name: 'updateAccount'}" class="btn btn-main">
-          edit account
-        </RouterLink>
+  <div class="page-wrap">
+    <div class="container mt-5 pt-5">
+      <div class="row mt-5 pt-5">
+        <div class="col-md-12 text-center">
+          <h1>
+            Account info
+          </h1>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="btn-wrap">
-          <a @click="openModel(teacher._id!.toString())" class="btn btn-main">delete account</a>
+      <div class="row">
+        <div class="col-12 text-center">
+          <p>name: {{ teacher!.fullName }}</p>
+          <p>email: {{ teacher!.email }}</p>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-3 d-flex justify-content-center">
+          <div class="btn-wrap">
+          <RouterLink :to="{name: 'updateAccount'}" class="btn btn-main">
+            edit account
+          </RouterLink>
+          </div>
+        </div>
+        <div class="col-md-3 d-flex justify-content-center">
+          <div class="btn-wrap">
+            <a @click="openModel()" class="btn btn-main">delete account</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="wrapper" v-auto-animate>
-    <div class="delete-modal" :class="modalToggle" @click="closeModal">
+    <div class="delete-modal" :class="modalToggle" @click="closeModal" v-if="modalToggle == 'open'">
       <div @click.stop class="modal-wrap">
         <div class="custom-modal-head">
           <h5>Delete Account</h5>
@@ -58,13 +44,13 @@ if(id){
             Are you sure you want to delete your account?
           </p>
         </div>
-        <div class="custom-modal-footer">
+        <div class="custom-modal-footer" v-auto-animate>
           <div class="row">
             <div class="col-md-6">
               <button type="button" class="btn btn-custom" @click="closeModal">Cancel</button>
             </div>
             <div class="col-md-6">
-              <button type="button" class="btn btn-custom-red" @click="openForm = true">Delete</button>
+              <button type="button" class="btn btn-custom-red" @click="()=>{openForm = true}">Delete</button>
             </div>
           </div>
           <div class="form" v-if="openForm">
@@ -129,27 +115,46 @@ if(id){
 </template>
 
 <script lang="ts">
+import { getUser, deleteAccount } from "../assets/javascript/api/userApi";
+import {validateEmail, errEmailEmp, errEmail, errPassEmp, errSubmit} from '../assets/javascript/validation';
+import { Teacher } from "../assets/javascript/models/user";
+import Header from '../components/Header.vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
   data() {
     return {
-      id: '',
+      _id: '',
       email: '',
       emailError: '',
       password: '',
       passwordError: '',
       modalToggle: 'hide',
       loading: false,
-      openForm: false
+      openForm: false,
+    }
+  },
+  components: {
+    Header
+  },
+  async setup(){
+    const id:string | null = sessionStorage.getItem('user');
+    let teacher: Teacher
+
+    const result = await getUser(id!);
+    teacher = result?.data
+
+    return{
+      teacher
     }
   },
   methods: {
-    openModel(Id: string) {
-      this.id = Id,
+    openModel() {
+      this._id = sessionStorage.getItem('user')!,
       this.modalToggle = 'open'
     },
     closeModal() {
-      this.id = '',
+      this._id = '',
+      this.openForm = false;
       this.modalToggle = 'hide'
     },
     checkEmail(){
@@ -166,11 +171,12 @@ export default defineComponent({
       this.checkPassword()
 
       if(!this.emailError && !this.passwordError){
-        teacher.email = this.email
-        teacher.password = this.password
-        const reslut = await deleteAccount(teacher)
+        console.log(this.teacher)
+        this.teacher!.email = this.email
+        this.teacher!.password = this.password
+        const reslut = await deleteAccount(this.teacher)
         if(reslut?.code == 200){
-          this.$router.push('signIn');
+          this.$router.push({name: 'signIn'});
         }
       }
       this.loading = false
@@ -180,5 +186,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-  @import "../assets/styles/pages/home.scss";
+  @import "../assets/styles/pages/account.scss";
 </style>
