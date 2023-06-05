@@ -32,12 +32,11 @@ export const getAllCourse = async (id:string) => {
   try {
     await axios.request(options('GET', `/getallcourses/${id}`, null))
       .then((response)=>{
-        console.log(response)
         const courses = [] as Course[];
 
         for (let i = 0; i < response.data.length; i++) {
-          courses.push(new Course(response.data['_id'], response.data['title'], response.data['description'], 
-            response.data['teacherId'], createExerciseCollection(response.data['exercises']))
+          courses.push(new Course(response.data[i]['_id'], response.data[i]['title'], response.data[i]['description'], 
+            response.data[i]['teacherId'], createExerciseCollection(response.data[i]['exercises']))
           )
         }
 

@@ -40,19 +40,25 @@ export class Exercise implements ExerciseInterface {
     return img.src
   }
 
-  genarateBase64 = (file: any) => {
-    console.log(file)
-    const reader = new FileReader()
-    reader.onloadend = async () => {
-      
-      const base64String = await (<string>reader.result)
-        .replace('data:', '')
-        .replace(/^.+,/, '');
+  genarateBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
 
-      this.photo = base64String.toString()
-    };
-    reader.readAsDataURL(file);
+      reader.onloadend = () =>{
+        if(typeof reader.result === 'string'){
+          resolve(reader.result)
+        }
+        else{
+          reject(new Error('Error converting image to base64'));
+        }
+      }
 
+      reader.onerror = () => {
+        reject(new Error('Error reading image file'));
+      };
+  
+      reader.readAsDataURL(file);
+    })
   }
 }
 

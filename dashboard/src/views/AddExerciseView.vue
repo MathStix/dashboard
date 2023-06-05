@@ -131,7 +131,7 @@ export default defineComponent({
       descError: '',
       answer: '',
       answerError: '',
-      img: '',
+      img: null as File | null,
       imgType: '',
       imageError: '',
       exerciseType: 'Text',
@@ -182,7 +182,7 @@ export default defineComponent({
       this.valitImage()
     },
     valitImage(){
-      this.imageError = this.img == '' ? errImageEmp() : (
+      this.imageError = this.img == null ? errImageEmp() : (
         validateFile(this.imgType) ? '' : errImage()
       )
     },
@@ -205,17 +205,25 @@ export default defineComponent({
       this.checkDescription()
       this.checkAnswer()
 
-      if(this.titleError == '' && this.descError == '' && 
-      this.imageError == '' && this.answerError == '') {
+      if(this.titleError == '' && this.descError == '' && this.imageError == '' && this.answerError == '') {
         const exercise = new Exercise(0, this.title, this.description, 
           this.answer, `${this.position[1]}, ${this.position[0]}`, null, '20', 
           this.exerciseType, sessionStorage.getItem('user')
         )
-        exercise.genarateBase64(this.img);
-        console.log(exercise);
-        const result = await createExercise(exercise)
 
-        console.log(result)
+        exercise.genarateBase64(this.img!)
+        .then( async (base64) => {
+          exercise.photo = base64
+            .replace('data:', '')
+            .replace(/^.+,/, '');
+
+          console.log(exercise)
+          const result = await createExercise(exercise)
+          console.log(result)
+        })
+        .catch((error) => {
+          console.error(error);
+        });
       }
     }
   },

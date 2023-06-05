@@ -9,8 +9,6 @@ const result = await getAllCourse(id!)
 const courses:Course[] = result?.data
 
 let message = false
-console.log(courses.length)
-console.log(courses)
 if(courses.length > 0){
   message = true
 }
@@ -40,7 +38,7 @@ if(courses.length > 0){
             <CourseCard 
               v-for="course in courses" 
               :key="course._id" 
-              :exercise="course"
+              :course="course"
             />
           </div>
           <div class="wrap" v-else>
