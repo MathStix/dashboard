@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Header from '../components/Header.vue';
-import GameCard from '../components/GameCard.vue';
+import CourseCard from '@/components/CourseCard.vue';
 import { getUser } from "../assets/javascript/api/userApi";
 import { getAllCourse } from '@/assets/javascript/api/courseApi';
 import { Course } from '@/assets/javascript/models/course';
@@ -10,9 +10,9 @@ const id:string | null = sessionStorage.getItem('user');
 const result = await getAllCourse(id!);
 const courses: Course[] = result?.data
 
-let message = false
+let message = true
 if(courses.length > 0){
-  message = true
+  message = false
 }
 </script>
 
@@ -42,7 +42,8 @@ if(courses.length > 0){
               Courses
             </h2>
             <div class="slide" v-if="!message">
-              <GameCard 
+              <CourseCard
+                class="mt-4" 
                 v-for="course in courses" 
                 :key="course._id" 
                 :course="course" 
