@@ -2,7 +2,7 @@
   <Header/>
   <div v-auto-animate>
     <section class="page-wrap pt-5" v-if="course">
-      <div class="container-fluid mt-5 pt-4 space">
+      <div class="container-fluid mt-5 pt-4 space" >
         <div class="row">
           <div class="col-12">
             <h1>{{ course.title }}</h1>
@@ -93,12 +93,20 @@ export default defineComponent({
     const res = await getAll(sessionStorage.getItem('user')!)
     const exercises: Ref<Exercise[] | null> = ref(res?.data)
 
+    const indexes: number[] = []
+
     for(let i = 0; i < exercises.value!.length; i++){
       for(let j = 0; j < course.value!.exercises!.length; j++){
         if(exercises.value![i]._id == course.value!.exercises![j]._id){
-          exercises.value?.splice(i, 1)
+          indexes.push(i)
+          continue
         }
       }
+    }
+
+    for(let i = 0; i < indexes.length; i++){
+      const newIndex = indexes[i] - i
+      exercises.value?.splice(newIndex, 1)
     }
 
     return {
@@ -122,12 +130,20 @@ export default defineComponent({
       const result = await getAll(sessionStorage.getItem('user')!)
       this.exercises! = result?.data
 
+      const indexes: number[] = []
+
       for(let i = 0; i < this.exercises!.length; i++){
         for(let j = 0; j < this.course!.exercises!.length; j++){
           if(this.exercises![i]._id == this.course!.exercises![j]._id){
-            this.exercises?.splice(i, 1)
+            indexes.push(i)
+            continue
           }
         }
+      }
+
+      for(let i = 0; i < indexes.length; i++){
+        const newIndex = indexes[i] - i
+        this.exercises?.splice(newIndex, 1)
       }
 
       this.loading = false
