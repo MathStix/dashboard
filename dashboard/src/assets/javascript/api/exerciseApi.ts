@@ -54,7 +54,7 @@ export const getAll = async (id:string) => {
   let result: { code: number, data: Exercise[] | any } | null = null
   
   try {
-    await axios.request(options('GET', '/getallexercises', {"teacherId": id}))
+    await axios.request(options('GET', `/getallexercises/${id}`, null))
       .then((response) => {
         result = {
           code: response.status,
