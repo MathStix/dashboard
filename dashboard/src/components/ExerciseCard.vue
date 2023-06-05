@@ -5,23 +5,47 @@ defineProps({
   exercise: {
     type: Exercise,
     required: true,
+  },
+  addable: {
+    type: Boolean,
+    required: false,
+    default: false
+  },
+  removeAble: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 });
+
 </script>
 
 <template>
   <div class="card">
     <div class="inner">
       <div class="img-wap">
-        <img :src="exercise.getImage()" alt="game-img">
+        <img :src="exercise.getImage()" alt="game-img" v-if="exercise.photo">
+        <img src="https://placehold.co/600x650" alt="game-img" v-else>
       </div>
       <p>{{ exercise.title }}</p>
       <p>{{ exercise.description }}</p>  
-      <a class="btn btn-main mt-4">
-        <span>
-          View
-        </span>
-      </a>   
+      <div class="wrap d-flex justify-contant-between">
+        <a class="btn btn-main mt-4">
+          <span>
+            View
+          </span>
+        </a>
+        <a class="btn btn-main mt-4" v-if="addable" @click="$emit('addToCourse', exercise._id)">
+          <span>
+            Add to course
+          </span>
+        </a> 
+        <a class="btn btn-main mt-4" v-if="removeAble" @click="$emit('removeFromCourse', exercise._id)">
+          <span>
+            remove from course
+          </span>
+        </a>  
+      </div> 
     </div>
   </div>
 </template>

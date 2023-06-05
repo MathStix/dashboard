@@ -8,7 +8,9 @@
           </RouterLink>
         </li>
         <li>
-          <a href="#">Courses</a>
+          <RouterLink :to="{name: 'courses'}">
+            Courses
+          </RouterLink>
         </li>
         <li>
           <RouterLink :to="{name: 'exercises'}">

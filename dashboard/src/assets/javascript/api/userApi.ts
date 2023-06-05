@@ -1,23 +1,20 @@
 import axios from "axios"
 import { type UpdateUser, type User, Teacher } from "../models/user"
+import { options } from "./apiOptions";
 
 export const signIn = async (user: User) => {
   let result: { code: number, data: User | any } | null = null
 
   try {
-    await axios.post(`${import.meta.env.VITE_API_USER_URL}/login`, user,{
-      headers: { 'Content-type': 'application/json' }
-    }).then((response)=> {
-      console.log(response)
-      if(response.status == 200) {
+    await axios.request(options('POST', '/login', user))
+      .then((response) => {
         result = {
           code: response.status,
           data: new Teacher (response.data['_id'], response.data['fullName'], 
             response.data['email'], response.data['password']
           )
         }
-      }
-    });
+      })
   } catch (error: any) {
     result = {
       code: error.response.status,
@@ -30,14 +27,14 @@ export const signIn = async (user: User) => {
 
 export const checkUser = async (id: string) => {
   let result: Boolean = false
+
   try {
-    await axios.get(`${import.meta.env.VITE_API_USER_URL}/teacher/${id}`, {
-      headers: { 'Content-type': 'application/json' }
-    }).then((response)=> {
-      if(response.status == 200) {
-        result = true
-      }
-    });
+    await axios.request(options('GET', `/teacher/${id}`, null))
+      .then((response)=>{
+        if(response.status == 200) {
+          result = true
+        }
+      })
   } catch (error: any) {
     result = false
   }
@@ -47,19 +44,17 @@ export const checkUser = async (id: string) => {
 
 export const getUser = async (id: string) => {
   let result: { code: number, data: User | any } | null = null
+
   try {
-    await axios.get(`${import.meta.env.VITE_API_USER_URL}/teacher/${id}`, {
-      headers: { 'Content-type': 'application/json' }
-    }).then((response)=> {
-      if(response.status == 200) {
+    await axios.request(options('GET', `/teacher/${id}`, null))
+      .then((response)=>{
         result = {
           code: response.status,
           data: new Teacher (response.data['_id'], response.data['fullName'], 
             response.data['email'], response.data['password']
           )
         }
-      }
-    });
+      })
   } catch (error: any) {
     result = {
       code: error.response.status,
@@ -74,28 +69,19 @@ export const signUp = async (user: User) => {
   let result: { code: number, data: User | any } | null = null
 
   try {
-    await axios.post(`${import.meta.env.VITE_API_USER_URL}/teacher`, user, {
-      headers: { 'Content-type': 'application/json' }
-    }).then((response) => {
-      if(response.status == 201) {
+    await axios.request(options('POST', '/teacher', user))
+      .then((response)=>{
         result = {
           code: response.status,
           data: new Teacher (response.data['_id'], response.data['fullName'], 
             response.data['email'], response.data['password']
           )
         }
-      }
-      else{
-        result = {
-          code: response.status,
-          data: response.data
-        }
-      }
-    });
+      })
   } catch (error: any) {
     result = {
-      code: 400,
-      data: 'nope'
+      code: error.response.status,
+      data: error.response.data
     }
   }
 
@@ -106,17 +92,13 @@ export const deleteAccount = async (user:User) => {
   let result: { code: number, data: User | any } | null = null
 
   try {
-    await axios.delete(`${import.meta.env.VITE_API_USER_URL}/teacher`, {
-      data: user,
-      headers: { 'Content-type': 'application/json' }
-    }).then((response) => {
-      if(response.status == 200){
+    await axios.request(options('DELETE', '/teacher', user))
+      .then((response)=>{
         result = {
           code: response.status,
           data: response.data
         }
-      }
-    })
+      })
   } catch (error: any) {
     result = {
       code: error.response.status,
@@ -131,16 +113,13 @@ export const updateUser = async (user:UpdateUser) => {
   let result: { code: number, data: User | any } | null = null
 
   try {
-    await axios.put(`${import.meta.env.VITE_API_USER_URL}/login`, user,{
-      headers: { 'Content-type': 'application/json' }
-    }).then((response)=>{
-      if(response.status == 201){
+    await axios.request(options('put', '/login', user))
+      .then((response)=>{
         result = {
           code: response.status,
           data: response.data
         }
-      }
-    });
+      })
   } catch (error: any) {
     result = {
       code: error.response.status,

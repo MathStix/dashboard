@@ -3,7 +3,7 @@ const reEmail = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 const reTitle = /^[a-zA-Z0-9_ #--():]*$/;
 const reDescription = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-?!"()#&+—’”“]*$/;
 const reId = /^[0-9]*$/;
-// const extentions = ["png","jpg","jpeg","webp"]
+const extentions = ["png","jpg","jpeg"]
 
 //validation
 export const validateName = (name: string):Boolean => {
@@ -21,16 +21,16 @@ export const validateDescription = (description: string):Boolean => {
 export const validateId = (id: string):Boolean => {
   return reId.test(id);
 }
-// export const validateFile = (file: any):Boolean => {
-//   for(let ext of extentions){
-//     if(file == ext)
-//     {
-//       return true
-//       break;
-//     }
-//   }
-//   return false
-// }
+export const validateFile = (file: any):Boolean => {
+  for(let ext of extentions){
+    if(file == ext)
+    {
+      return true
+      break;
+    }
+  }
+  return false
+}
 
 export const errSubmit = ():string => {return 'One or more fields had an error.';}
 export const errNameEmp = ():string => { return 'Name can not be empty.' }
@@ -44,3 +44,5 @@ export const errPass = ():string => { return 'Password must be at least 10 chara
 export const errConfirmPass = ():string => { return 'Confirm password must match.'}
 export const errDescriptionEmp = ():string => { return 'Description can not be empty.' }
 export const errDescription = (e:string):string => { return `${e} is not a description.` }
+export const errImageEmp = ():string => { return 'Image can not be empty.' }
+export const errImage = ():string => { return `The given file in not an image.` }

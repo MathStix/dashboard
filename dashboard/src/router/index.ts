@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import SignInView from '@/views/SignInView.vue';
-import { routeGuard } from '@/assets/javascript/guard';
+import { checkCourse, routeGuard } from '@/assets/javascript/guard';
 
 
 const router = createRouter({
@@ -75,6 +75,52 @@ const router = createRouter({
         }
       },
       component: () => import('../views/AddExerciseView.vue')
+    },
+    {
+      path: '/courses',
+      name: 'courses',
+      beforeEnter: async(to, from, next) => {
+        if (await routeGuard() == false) {
+          next({ name: 'signIn' });
+          return false
+        } else {
+          next();
+        }
+      },
+      component: () => import('../views/CoursesView.vue')
+    },
+    {
+      path: '/fill-course/:id',
+      name: 'fillCourse',
+      beforeEnter: async(to, from, next) => {
+        if (await routeGuard() == true) {
+          const reslut = await checkCourse(to.params.id.toString())
+          if(reslut){
+            next();
+          }
+          else{
+            next({ name: 'home' });
+            return false
+          }
+        } else {
+          next({ name: 'signIn' });
+          return false
+        }
+      },
+      component: () => import('../views/FillCourseView.vue')
+    },
+    {
+      path: '/add-course',
+      name: 'addCourse',
+      beforeEnter: async(to, from, next) => {
+        if (await routeGuard() == false) {
+          next({ name: 'signIn' });
+          return false
+        } else {
+          next();
+        }
+      },
+      component: () => import('../views/AddCourseView.vue')
     },
     {
       path: '/SignUp',
