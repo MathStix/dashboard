@@ -1,30 +1,34 @@
 <template>
   <Header/>
   <section class="page-wrap">
-    <div class="row">
-      <div class="col-md-12">
-        <a @click="startTheGame" class="btn btn-main">
-          <span>Spel starten.</span>
-        </a>
+    <div class="container-fluid pacer">
+      <div class="row mt-5">
+        <div class="col-md-12 mt-5 pt-5">
+          <a @click="startTheGame" class="btn btn-main">
+            <span>Spel starten.</span>
+          </a>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <h1>Join code: {{ game.code }}</h1>
-        <p>Woord om te raden: {{ game.word }}</p>
+      <div class="row">
+        <div class="col-12 mt-5 mb-5">
+          <h1>Join code: {{ game.code }}</h1>
+          <p>Woord om te raden: {{ game.word }}</p>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <RouterLink class="btn btn-main" :to="{name:'fillCourse', params:{id: course._id}}">
-          <span>Bewerk opdrachten lijst</span>
-        </RouterLink>
+      <div class="row">
+        <div class="col-12 mb-5">
+          <RouterLink class="btn btn-main" :to="{name:'fillCourse', params:{id: course._id}}">
+            <span>Bewerk opdrachten lijst</span>
+          </RouterLink>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <p>Opdrachten in het spel.</p>
-      <div class="col-12">
-        <ExerciseCard v-for="exercise in course.exercises" :exercise="exercise" :key="exercise._id" />
+      <div class="row">
+        <p>Opdrachten in het spel.</p>
+        <div class="col-12">
+          <div class="wrapper">
+            <ExerciseCard class="card" v-for="exercise in course.exercises" :exercise="exercise" :key="exercise._id" />
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -65,3 +69,7 @@ export default defineComponent({
   },
 })
 </script>
+
+<style scoped lang="scss">
+@import "../assets/styles/pages/gameDetail.scss";
+</style>

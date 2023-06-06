@@ -51,5 +51,5 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
-@import "../assets/styles/components/game-card.scss";
+@import "../assets/styles/components/exercise-card.scss";
 </style>

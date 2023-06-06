@@ -1,0 +1,17 @@
+@import '../colors';
+.pacer{
+  padding: 0 40px 40px;
+}
+
+.btn-main{
+  width: fit-content;
+}
+
+.wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  .card{
+    margin-right: 20px;
+    margin-bottom: 30px;
+  }
+}
