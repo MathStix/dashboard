@@ -112,31 +112,3 @@ export const updateExercise = async (exercise:ExerciseInterface) => {
 
   return result
 }
-
-//Game
-export const StartGameTemp = async (id: string) => {
-  let result: { code: number, data: Exercise | any } | null = null
-  console.log('in')
-  try {
-    await axios.post(`${import.meta.env.VITE_API_USER_URL}/exercise`, {
-      data: { '_id': id },
-      headers: { 'Content-type': 'application/json' }
-    }).then((response)=>{
-      console.log(response)
-      if(response.status == 201){
-        result = {
-          code: response.status,
-          data: response.data
-        }
-      }
-    })
-  } catch (error: any) {
-    console.log(error);
-    result = {
-      code: error.response.status,
-      data: error.response.data
-    }
-  }
-
-  return result
-}
