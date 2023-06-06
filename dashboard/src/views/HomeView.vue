@@ -28,7 +28,7 @@ if(courses.length > 0){
         <div class="inner-wrap">
           <section class="currgames game-slide">
             <h1>
-              games
+              Spellen.
             </h1>
             <div class="slide">
               <GameCard :game="game" />
@@ -36,7 +36,7 @@ if(courses.length > 0){
           </section>
           <section class="games game-slide">
             <h2>
-              Courses
+              Opdrachten lijst.
             </h2>
             <div class="slide" v-if="!message">
               <CourseCard
@@ -47,7 +47,7 @@ if(courses.length > 0){
               />
             </div>
             <div class="slide" v-else>
-              <p>You have not made any courses yet.</p>
+              <p>Je hebt nog geen opdrachten lijst.</p>
             </div>
           </section>
         </div>

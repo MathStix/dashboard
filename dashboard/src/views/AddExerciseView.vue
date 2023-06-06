@@ -23,7 +23,7 @@ import 'ol/ol.css';
     <div class="container-fluid pacer">
       <div class="row mt-5 pt-5">
         <div class="col-12">
-          <h1>Add a new Exercise</h1>
+          <h1>Maak een nieuwe opdracht aan.</h1>
         </div>
       </div>
       <div class="row">
@@ -31,11 +31,11 @@ import 'ol/ol.css';
           <div class="inner">
             <form @submit.prevent="submit">
               <div class="form-group mt-3">
-                <label>Exercise title</label>
+                <label>Opdracht titel</label>
                 <input 
                   type="text"
                   class="form-control"
-                  placeholder="Enter exercise title"
+                  placeholder="Vul een Opdracht titel in."
                   required
                   v-model="title"
                   @blur="checkTitle"
@@ -48,13 +48,13 @@ import 'ol/ol.css';
                 </div>
               </div>
               <div class="form-group mt-3">
-                <label>Exercise description</label>
+                <label>Opdracht beschrijving.</label>
                 <textarea
                   cols="10" 
                   rows="5"
                   required
                   class="form-control"
-                  placeholder="Enter exercise description"
+                  placeholder="Vul een opdracht beschrijving in."
                   v-model="description"
                   @blur="checkDescription"
                   @keyup="checkDescription"
@@ -66,11 +66,11 @@ import 'ol/ol.css';
                 </div>
               </div>
               <div class="form-group mt-3">
-                <label>Exercise answer</label>
+                <label>Opdracht antwoord</label>
                 <input 
                   type="text"
                   class="form-control"
-                  placeholder="Enter the expected answer"
+                  placeholder="Vul een opdracht antwoord in."
                   required
                   v-model="answer"
                   @blur="checkAnswer"
@@ -91,15 +91,15 @@ import 'ol/ol.css';
                 </div>
               </div>
               <div class="form-group mt-3">
-              <label>Select a exercise type</label>
+              <label>Selcteer een opdracht type in.</label>
                 <select class="form-select" v-model="exerciseType">
-                  <option selected value="Text">Text</option>
-                  <option value="Photo">Photo</option>
+                  <option selected value="Text">tekst</option>
+                  <option value="Photo">foto</option>
                 </select>
               </div>
               <div class="form-group mt-3">
                 <button class="btn btn-main">
-                  <span>Save</span>
+                  <span>Opslaan</span>
                 </button>
               </div>
             </form>
@@ -107,7 +107,7 @@ import 'ol/ol.css';
         </div>
         <div class="col-md-6">
           <div class="inner">
-            <p>Select a location for the exercise</p>
+            <p>Slecteer een loactie voor de opdracht.</p>
             <div id="map-root" style="width: 100%; min-width: 100%; height: 500px" />
             <div id="marker"></div>
           </div>

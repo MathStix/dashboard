@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-12">
         <a @click="startTheGame" class="btn btn-main">
-          <span>Game starten</span>
+          <span>Spel starten.</span>
         </a>
       </div>
     </div>
@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col-12">
         <RouterLink class="btn btn-main" :to="{name:'fillCourse', params:{id: course._id}}">
-          <span>Bewerk course</span>
+          <span>Bewerk opdrachten lijst</span>
         </RouterLink>
       </div>
     </div>

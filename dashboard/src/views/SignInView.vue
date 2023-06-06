@@ -3,14 +3,14 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-4 col-md-6 col-12">
-          <h1 class="text-center">Sign in</h1>
+          <h1 class="text-center">Login</h1>
           <form @submit.prevent="submit">
             <div class="form-group mt-3">
-              <label for="exampleInputEmail1">Email address</label>
+              <label for="exampleInputEmail1">Email</label>
               <input 
                 type="email" 
                 class="form-control" 
-                placeholder="Enter email" 
+                placeholder="Vul je email" 
                 required
                 v-model="email"
                 @blur="checkEmail"
@@ -23,11 +23,11 @@
               </div>
             </div>
             <div class="form-group mt-4">
-              <label for="exampleInputPassword1">Password</label>
+              <label for="exampleInputPassword1">Wachtwoord</label>
               <input 
                 type="password" 
                 class="form-control" 
-                placeholder="Password"
+                placeholder="Wachtwoord"
                 required
                 v-model="password"
                 @blur="checkPassword"
@@ -51,15 +51,15 @@
                 </svg>
                 
                 <span v-else>
-                  Submit
+                  Versturen
                 </span>
               </button>
             </div>
           </form>
           <p class="mt-5 text-center">
-            Dont have an account yet?
+            Nog geen account?
             <RouterLink :to="{name: 'SignUp'}">
-              Sign up
+              Registreer
             </RouterLink>
           </p>
         </div>

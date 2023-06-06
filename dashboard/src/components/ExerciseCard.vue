@@ -32,17 +32,17 @@ defineProps({
       <div class="wrap d-flex justify-contant-between">
         <RouterLink class="btn btn-main mt-4" :to="{name: 'exerciseDetail', params:{id: exercise._id}}">
           <span>
-            View
+            Bekijk
           </span>
         </RouterLink>
         <a class="btn btn-main mt-4" v-if="addable" @click="$emit('addToCourse', exercise._id)">
           <span>
-            Add to course
+            Voeg to aan lijst
           </span>
         </a> 
         <a class="btn btn-main mt-4" v-if="removeAble" @click="$emit('removeFromCourse', exercise._id)">
           <span>
-            remove from course
+            Verwijder van lijst
           </span>
         </a>  
       </div> 

@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="row">
-          <h2>Exercises</h2>
+          <h2>Opdrachten in de lijst.</h2>
           <div class="wrap d-flex" v-auto-animate>
             <ExerciseCard 
               v-for="exercise in course.exercises" 
@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="row" v-if="exercises">
-          <h2>All Exercises</h2>
+          <h2>Alle opdrachten.</h2>
           <div class="wrap d-flex" v-auto-animate>
             <ExerciseCard 
               v-for="exercise in exercises" 

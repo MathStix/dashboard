@@ -9,12 +9,12 @@
         </li>
         <li>
           <RouterLink :to="{name: 'courses'}">
-            Courses
+            Opdrachten lijsten
           </RouterLink>
         </li>
         <li>
           <RouterLink :to="{name: 'exercises'}">
-            Exercises
+            Opdrachten
           </RouterLink>
         </li>
       </ul>
