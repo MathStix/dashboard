@@ -12,11 +12,18 @@ h1,h2,h3,h4,h5,h6{
   font-size: 40px;
 }
 
-p,span,a,i,b{
+p,span,a,i{
   font-family: $roboto;
   font-weight: $r-regular;
   color: $white;
   font-size: 20px;
+}
+
+b{
+  font-family: $roboto;
+  font-weight: $r-semiBold;
+  color: $black;
+  font-size: 16px;
 }
 
 .page-wrap{

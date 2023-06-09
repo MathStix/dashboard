@@ -90,6 +90,12 @@
                         </button>
                         </div>
                     </form>
+                    <p class="mt-5 text-center">
+                        All een account?
+                        <RouterLink :to="{name: 'signIn'}">
+                            Login
+                        </RouterLink>
+                    </p>
                 </div>
             </div>
         </div>

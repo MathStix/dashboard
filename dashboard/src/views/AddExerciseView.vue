@@ -95,11 +95,21 @@ import 'ol/ol.css';
                 <select class="form-select" v-model="exerciseType">
                   <option selected value="Text">tekst</option>
                   <option value="Photo">foto</option>
+                  <option value="Draw">tekenen</option>
+                  <option value="Geo">geo</option>
                 </select>
               </div>
               <div class="form-group mt-3">
                 <button class="btn btn-main">
-                  <span>Opslaan</span>
+                  <svg v-if="loading" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                    <circle cx="50" cy="50" r="32" stroke-width="8" stroke="#fff" stroke-dasharray="50.26548245743669 50.26548245743669" fill="none" stroke-linecap="round">
+                      <animateTransform attributeName="transform" type="rotate" dur="1s" repeatCount="indefinite" keyTimes="0;1" values="0 50 50;360 50 50"></animateTransform>
+                    </circle>
+                    <circle cx="50" cy="50" r="23" stroke-width="8" stroke="#fff" stroke-dasharray="36.12831551628262 36.12831551628262" stroke-dashoffset="36.12831551628262" fill="none" stroke-linecap="round">
+                      <animateTransform attributeName="transform" type="rotate" dur="1s" repeatCount="indefinite" keyTimes="0;1" values="0 50 50;-360 50 50"></animateTransform>
+                    </circle>
+                  </svg>
+                  <span v-else>Opslaan</span>
                 </button>
               </div>
             </form>
@@ -135,6 +145,7 @@ export default defineComponent({
       imgType: '',
       imageError: '',
       exerciseType: 'Text',
+      loading: false
     }
   },
   mounted() {
@@ -200,6 +211,7 @@ export default defineComponent({
       this.answerError = this.answer == '' ? 'Answer can not be left empty.' : ''
     },
     async submit(){
+      this.loading = true;
       this.valitImage()
       this.checkTitle()
       this.checkDescription()
@@ -217,12 +229,15 @@ export default defineComponent({
             .replace('data:', '')
             .replace(/^.+,/, '');
 
-          console.log(exercise)
           const result = await createExercise(exercise)
-          console.log(result)
+          if(result?.code == 201){
+            this.$router.push({name: 'exercises'})
+          }
+          this.loading = false;
         })
         .catch((error) => {
           console.error(error);
+          this.loading = false;
         });
       }
     }

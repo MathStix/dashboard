@@ -27,8 +27,8 @@ defineProps({
         <img :src="exercise.getImage()" alt="game-img" v-if="exercise.photo">
         <img src="https://placehold.co/600x650" alt="game-img" v-else>
       </div>
-      <p>{{ exercise.title }}</p>
-      <p>{{ exercise.description }}</p>  
+      <p><b>{{ exercise.title }}</b></p>
+      <p class="desc">{{ exercise.description }}</p>  
       <div class="wrap d-flex justify-contant-between">
         <RouterLink class="btn btn-main mt-4" :to="{name: 'exerciseDetail', params:{id: exercise._id}}">
           <span>
