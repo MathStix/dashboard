@@ -14,18 +14,18 @@ import {
     <div class="container-fluid pacer">
       <div class="row">
         <div class="col-12 text-center">
-          <h1>Add a new course</h1>
+          <h1>Voeg een opdrachten lijst toe.</h1>
         </div>
       </div>
       <div class="row justify-content-center mt-3">
         <div class="col-lg-4 col-md-7">
           <form @submit.prevent="submit">
             <div class="form-group">
-              <label>Course title</label>
+              <label>Opdrachten lijst title</label>
               <input 
                 class="form-control" 
                 type="text" 
-                placeholder="Enter a course title" 
+                placeholder="Vul een opdrachten lijst title in" 
                 required
                 v-model="title"
                 @blur="checkTitle"
@@ -40,7 +40,7 @@ import {
             <div class="form-group mt-4">
               <label>Course description</label>
               <textarea 
-                placeholder="Enter a course description" 
+                placeholder="Vul een opdrachten lijst beschrijving in" 
                 cols="10" 
                 rows="3"
                 required
@@ -57,7 +57,7 @@ import {
             </div>
             <div class="form-group mt-3">
               <button class="btn btn-main">
-                <span>Save</span>
+                <span>Opslaan</span>
               </button>
             </div>
           </form>

@@ -13,14 +13,14 @@ import Header from '../components/Header.vue';
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-4 col-md-6 col-12">
-          <h1 class="text-center">Sign in</h1>
+          <h1 class="text-center">Bewerk account</h1>
           <form @submit.prevent="update">
             <div class="form-group mt-3">
-              <label>Fullname</label>
+              <label>volledige naam</label>
               <input 
                 type="text" 
                 class="form-control" 
-                placeholder="Enter your full name" 
+                placeholder="Vul je Volledige naam in." 
                 required
                 v-model="name"
                 @blur="checkEmail"
@@ -33,11 +33,11 @@ import Header from '../components/Header.vue';
               </div>
             </div>
             <div class="form-group mt-3">
-              <label>Email address</label>
+              <label>Email</label>
               <input 
                 type="email" 
                 class="form-control" 
-                placeholder="Enter email" 
+                placeholder="Vul je email in." 
                 required
                 v-model="email"
                 @blur="checkEmail"
@@ -50,11 +50,11 @@ import Header from '../components/Header.vue';
               </div>
             </div>
             <div class="form-group mt-4">
-              <label>New password</label>
+              <label>Nieuwe wachtwoord</label>
               <input 
                 type="password" 
                 class="form-control" 
-                placeholder="New password"
+                placeholder="Nieuwe wachtwoord"
                 required
                 v-model="password"
                 @blur="checkPassword"
@@ -67,11 +67,11 @@ import Header from '../components/Header.vue';
               </div>
             </div>
             <div class="form-group mt-4">
-              <label>Confirm new password</label>
+              <label>Bevestig Nieuwe wachtwoord</label>
               <input 
                 type="password" 
                 class="form-control" 
-                placeholder="Confirm new password"
+                placeholder="Bevestig Nieuwe wachtwoord"
                 required
                 v-model="confirmPassword"
                 @blur="checkPassword"
@@ -84,11 +84,11 @@ import Header from '../components/Header.vue';
               </div>
             </div>
             <div class="form-group mt-4">
-              <label>Your currend password</label>
+              <label>Je huidige wachtwoord</label>
               <input 
                 type="password" 
                 class="form-control" 
-                placeholder="Your currend password"
+                placeholder="Je huidige wachtwoord"
                 required
                 v-model="oldPass"
                 @blur="checkPassword"
@@ -112,7 +112,7 @@ import Header from '../components/Header.vue';
                 </svg>
                 
                 <span v-else>
-                  Submit
+                  Opslaan
                 </span>
               </button>
             </div>

@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import Header from '../components/Header.vue';
 import CourseCard from '@/components/CourseCard.vue';
-import { getUser } from "../assets/javascript/api/userApi";
 import { getAllCourse } from '@/assets/javascript/api/courseApi';
 import { Course } from '@/assets/javascript/models/course';
-import {StartGameTemp} from '@/assets/javascript/api/exerciseApi' 
+import { getGame } from '@/assets/javascript/api/gameApi';
+import type { Game } from '@/assets/javascript/models/game';
+import GameCard from '@/components/GameCard.vue';
 
 const id:string | null = sessionStorage.getItem('user');
 const result = await getAllCourse(id!);
 const courses: Course[] = result?.data
+
+const reslutGame = await getGame('64649b1ec128098626f846f9')
+const game: Game = reslutGame?.data
 
 let message = true
 if(courses.length > 0){
@@ -22,24 +26,17 @@ if(courses.length > 0){
     <div class="page-wrap">
       <div class="container-fluid pacer">
         <div class="inner-wrap">
-          <div class="btn-wrap">
-            <a class="btn btn-main mt-4" @click="startGame">
-              <span>
-                Start new (HartCode) game
-              </span>
-            </a>
-          </div>
           <section class="currgames game-slide">
             <h1>
-              Ongoing game
+              Spellen.
             </h1>
             <div class="slide">
-              <!-- <GameCard Descriptin="Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum sed quidem, aliquid delectus atque ab, eligendi accusantium adipisci molestiae odit dolor aspernatur? Accusamus fugit est pariatur dolor porro explicabo mollitia ea placeat totam qui, sint cum tempore. Corrupti hic fugit, accusamus deleniti, nobis laboriosam minus quisquam sapiente tempora, quidem rem!" /> -->
+              <GameCard :game="game" />
             </div>
           </section>
           <section class="games game-slide">
             <h2>
-              Courses
+              Opdrachten lijst.
             </h2>
             <div class="slide" v-if="!message">
               <CourseCard
@@ -50,7 +47,7 @@ if(courses.length > 0){
               />
             </div>
             <div class="slide" v-else>
-              <p>You have not made any courses yet.</p>
+              <p>Je hebt nog geen opdrachten lijst.</p>
             </div>
           </section>
         </div>
@@ -58,19 +55,6 @@ if(courses.length > 0){
     </div>
   </section>
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  methods: {
-    async startGame(){
-      const result = await StartGameTemp('64649b1ec128098626f846f9')
-      console.log(result);
-    },
-  },
-})
-</script>
 
 <style lang="scss" scoped>
   @import "../assets/styles/pages/home.scss";

@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import SignInView from '@/views/SignInView.vue';
-import { checkCourse, checkExercise, routeGuard } from '@/assets/javascript/guard';
+import { checkAnswer, checkCourse, checkExercise, checkGame, routeGuard } from '@/assets/javascript/guard';
+import AnswerViewVue from '@/views/AnswerView.vue';
+import GameDetailViewVue from '@/views/GameDetailView.vue';
+import FillCourseViewVue from '@/views/FillCourseView.vue';
 
 
 const router = createRouter({
@@ -107,7 +110,7 @@ const router = createRouter({
           return false
         }
       },
-      component: () => import('../views/FillCourseView.vue')
+      component: FillCourseViewVue
     },
     {
       path: '/add-course',
@@ -161,6 +164,46 @@ const router = createRouter({
         }
       },
       component: () => import('../views/ExerciseDetailView.vue')
+    },
+    {
+      path: '/game/:id',
+      name: 'gameDetails',
+      beforeEnter: async(to, from, next) => {
+        if (await routeGuard() == true) {
+          const reslut = await checkGame(to.params.id.toString())
+          if(reslut){
+            next();
+          }
+          else{
+            next({ name: 'home' });
+            return false
+          }
+        } else {
+          next({ name: 'signIn' });
+          return false
+        }
+      },
+      component: GameDetailViewVue
+    },
+    {
+      path: '/answers/:id',
+      name: 'answers',
+      beforeEnter: async(to, from, next) => {
+        if (await routeGuard() == true) {
+          const reslut = await checkAnswer(to.params.id.toString())
+          if(reslut){
+            next();
+          }
+          else{
+            next({ name: 'home' });
+            return false
+          }
+        } else {
+          next({ name: 'signIn' });
+          return false
+        }
+      },
+      component: AnswerViewVue
     },
     {
       path: '/SignUp',

@@ -3,14 +3,14 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 col-12">
-                    <h1 class="text-center">Sign Up</h1>
+                    <h1 class="text-center">Registreren</h1>
                     <form @submit.prevent="submit">
                         <div class="form-group mt-3">
-                        <label>Fullname</label>
+                        <label>Voledige naam</label>
                         <input 
                             type="text" 
                             class="form-control" 
-                            placeholder="Enter your full name" 
+                            placeholder="Vul je volledige naam in" 
                             required
                             v-model="name"
                             @blur="checkName"
@@ -23,11 +23,11 @@
                         </div>
                         </div>
                         <div class="form-group mt-3">
-                        <label>Email address</label>
+                        <label>Email</label>
                         <input 
                             type="email" 
                             class="form-control" 
-                            placeholder="Enter email" 
+                            placeholder="Vul je email in" 
                             required
                             v-model="email"
                             @blur="checkEmail"
@@ -40,11 +40,11 @@
                         </div>
                         </div>
                         <div class="form-group mt-4">
-                        <label>Password</label>
+                        <label>Wachtwoord</label>
                         <input 
                             type="password" 
                             class="form-control" 
-                            placeholder="New password"
+                            placeholder="nieuwe wachtwoord"
                             required
                             v-model="password"
                             @blur="checkPassword"
@@ -57,11 +57,11 @@
                         </div>
                         </div>
                         <div class="form-group mt-4">
-                        <label>Confirm password</label>
+                        <label>Bevestig wachtwoord</label>
                         <input 
                             type="password" 
                             class="form-control" 
-                            placeholder="Confirm password"
+                            placeholder="Bevestig wachtwoord"
                             required
                             v-model="confirmPassword"
                             @blur="checkConfirm"
@@ -85,11 +85,17 @@
                             </svg>
                             
                             <span v-else>
-                            Submit
+                                Versturen.
                             </span>
                         </button>
                         </div>
                     </form>
+                    <p class="mt-5 text-center">
+                        All een account?
+                        <RouterLink :to="{name: 'signIn'}">
+                            Login
+                        </RouterLink>
+                    </p>
                 </div>
             </div>
         </div>

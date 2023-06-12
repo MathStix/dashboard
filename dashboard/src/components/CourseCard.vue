@@ -16,7 +16,7 @@ defineProps({
       <p>{{ course.description }}</p>
       <RouterLink class="btn btn-main mt-4" :to="{name: 'courseDetail', params:{id: course._id}}">
         <span>
-          View
+          Bekijk
         </span>
       </RouterLink>  
     </div>

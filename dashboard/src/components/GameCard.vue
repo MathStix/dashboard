@@ -1,26 +1,29 @@
 <script setup lang="ts">
-import { Course } from '../assets/javascript/models/course';
-
-defineProps({
-  course: {
-    type: Course,
+import { getCourse } from '@/assets/javascript/api/courseApi';
+import type { Course } from '@/assets/javascript/models/course';
+import { Game } from '@/assets/javascript/models/game';
+ 
+const props = defineProps({
+  game: {
+    type: Game,
     required: true,
   }
 });
+
+const result = await getCourse(props.game.courseId)
+const course: Course = result?.data
+
 </script>
 
 <template>
   <div class="card">
     <div class="inner">
-      <div class="img-wap">
-        <img src="https://placehold.co/600x400" alt="game-img">
-      </div>
-      <p>{{ course.description }}</p>  
-      <a class="btn btn-main mt-4">
+      <p>Game met opdrachtenlijst: {{ course.title }}</p>
+      <RouterLink class="btn btn-main mt-4" :to="{name: 'gameDetails', params:{id: game._id}}">
         <span>
-          View
+          Bekijk game
         </span>
-      </a>   
+      </RouterLink>   
     </div>
   </div>
 </template>
