@@ -8,7 +8,7 @@
   position: relative;
   z-index: 10;
   background: $white;
-
+  box-shadow: 8px 8px 3px #000;
   .inner{
     background: $white;
     border-radius: 20px;
@@ -38,17 +38,5 @@
               line-clamp: 2; 
       -webkit-box-orient: vertical;
     }
-  }
-
-  &::after{
-    content: "";
-    position: absolute;
-    width: calc(100% + 15px);
-    height: calc(100% + 15px);
-    top: -5px;
-    left: -5px;
-    background: $gradiant;
-    border-radius: 20px;
-    z-index: -1;
   }
 }

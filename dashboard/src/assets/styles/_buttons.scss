@@ -4,7 +4,7 @@
   background: $red;
   border-radius: 50px;
   padding: 10px 10px;
-  width: 130px;
+  width: 110px;
   transition: all .3s ease-in-out;
 
   span{
@@ -21,5 +21,9 @@
   &:hover{
     background: $bue;
     transition: all .3s ease-in-out;
+  }
+
+  &.wide{
+    width: fit-content;
   }
 }

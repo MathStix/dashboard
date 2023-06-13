@@ -37,12 +37,12 @@ defineProps({
         </RouterLink>
         <a class="btn btn-main mt-4" v-if="addable" @click="$emit('addToCourse', exercise._id)">
           <span>
-            Voeg to aan lijst
+            Voeg to
           </span>
         </a> 
         <a class="btn btn-main mt-4" v-if="removeAble" @click="$emit('removeFromCourse', exercise._id)">
           <span>
-            Verwijder van lijst
+            Verwijder
           </span>
         </a>  
       </div> 

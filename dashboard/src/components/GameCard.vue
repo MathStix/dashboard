@@ -19,7 +19,7 @@ const course: Course = result?.data
   <div class="card">
     <div class="inner">
       <p>Game met opdrachtenlijst: {{ course.title }}</p>
-      <RouterLink class="btn btn-main mt-4" :to="{name: 'gameDetails', params:{id: game._id}}">
+      <RouterLink class="btn btn-main mt-4 wide" :to="{name: 'gameDetails', params:{id: game._id}}">
         <span>
           Bekijk game
         </span>
