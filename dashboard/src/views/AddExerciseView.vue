@@ -97,7 +97,7 @@ import 'ol/ol.css';
                   <option value="Photo">foto</option>
                   <option value="Draw">tekenen</option>
                   <option value="Geo">geo</option>
-                  <option value="mirror">mirror</option>
+                  <option value="mirror">spiegel</option>
                 </select>
               </div>
               <div class="form-group mt-3">

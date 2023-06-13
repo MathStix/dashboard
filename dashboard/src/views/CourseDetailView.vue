@@ -14,7 +14,7 @@ const course: Course = reslut?.data
   <Header/>
   <section class="page-wrap">
     <div class="container-fluid pacer">
-      <div class="row">
+      <div class="row mt-5 pt-5">
         <div class="col-12">
           <h1>{{ course.title }}</h1>
           <p>{{ course.description }}</p>
