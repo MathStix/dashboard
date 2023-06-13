@@ -13,18 +13,28 @@ const course: Course = reslut?.data
 <template>
   <Header/>
   <section class="page-wrap">
-    <div class="row">
-      <div class="col-12">
-        <h1>{{ course.title }}</h1>
-        <p>{{ course.description }}</p>
+    <div class="container-fluid pacer">
+      <div class="row">
+        <div class="col-12">
+          <h1>{{ course.title }}</h1>
+          <p>{{ course.description }}</p>
+        </div>
       </div>
-    </div>
-    <div class="row mt-5">
-      <ExerciseCard 
-        v-for="exercise in course.exercises" 
-        :key="exercise._id"
-        :exercise="exercise"
-      />
+      <div class="mt-5">
+        <div class="d-flex mb-5">
+          <h2>Opdrachten</h2>
+          <RouterLink class="btn btn-main wide h-100 mx-5" :to="{name:'fillCourse', params:{id: course._id}}">
+            <span>Bewerk opdrachten</span>
+          </RouterLink>
+        </div>
+        <div class="row card-row">
+          <div class="col-md-4 card-wrap" v-for="exercise in course.exercises" :key="exercise._id">
+            <ExerciseCard 
+              :exercise="exercise"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>

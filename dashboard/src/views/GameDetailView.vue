@@ -48,7 +48,7 @@
               </div>
             </div>
             <div class="exercise-wrap between mt-5 pt-2">
-              <h2>Teams <span class="small">Totaal verdeelde spelers: {{ (teams.length * 3) - 3 + teams[teams.length - 1].playerIds!.length }}</span></h2>
+              <h2>Teams <span class="small">Totaal verdeelde spelers: {{ (teams.length * 2) - 2 + teams[teams.length - 1].playerIds!.length }}</span></h2>
             </div>
             <div class="wrapper team-wrap">
               <span v-if="teams?.length == 0">
@@ -159,7 +159,7 @@ export default defineComponent({
     },
     async sortTeams(){
       this.loading = true
-      const result = await genarateTeams(this.game._id!, 3)
+      const result = await genarateTeams(this.game._id!, 2)
       if(result?.code == 201){
         const reslutGame = await getGame(this.game._id!)
         this.game = ref(reslutGame?.data)

@@ -28,10 +28,14 @@ if(courses.length > 0){
         <div class="inner-wrap">
           <section class="currgames game-slide">
             <h1>
-              Spellen.
+              Spel.
             </h1>
             <div class="slide">
-              <GameCard :game="game" />
+              <div class="row card-row w-100">
+                <div class="col-md-4 card-wrap">
+                  <GameCard :game="game" />
+                </div>
+              </div>
             </div>
           </section>
           <section class="games game-slide">
@@ -39,12 +43,14 @@ if(courses.length > 0){
               Opdrachten lijst.
             </h2>
             <div class="slide" v-if="!message">
-              <CourseCard
-                class="mt-4" 
-                v-for="course in courses" 
-                :key="course._id" 
-                :course="course" 
-              />
+              <div class="row card-row w-100">
+                <div class="col-md-4 card-wrap" v-for="course in courses" :key="course._id" >
+                  <CourseCard
+                    class="mt-4" 
+                    :course="course" 
+                  />
+                </div>
+              </div>
             </div>
             <div class="slide" v-else>
               <p>Je hebt nog geen opdrachten lijst.</p>

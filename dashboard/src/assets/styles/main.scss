@@ -217,3 +217,22 @@ html {
       box-sizing: border-box;
   }
 }
+
+.card-row{
+  .card-wrap{
+    flex: 0 0 auto;
+    width: 19%;
+    margin-bottom: 30px;
+    .card{
+      margin: auto;
+    }
+  }
+}
+
+.ol-attribution.ol-unselectable.ol-control.ol-uncollapsible{
+  display: none;
+}
+
+.pacer{
+  padding: 0 40px 40px;
+}

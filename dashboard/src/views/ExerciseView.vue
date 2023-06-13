@@ -21,7 +21,7 @@ if(exercises.length > 0){
       <div class="row">
         <div class="col-12">
           <div class="btn-wrap">
-          <RouterLink :to="{name: 'addExercises'}" class="btn btn-main mt-4">
+          <RouterLink :to="{name: 'addExercises'}" class="btn btn-main wide mt-4 mb-5">
             <span>
               Maak een nieuwe opdracht.
             </span>
@@ -31,15 +31,17 @@ if(exercises.length > 0){
       </div>
       <section class="exercises">
         <div class="row">
-          <div class="col-12">
+          <div class="col-12 mb-4 mt-5">
             <h1>Gemaakte pdrachten.</h1>
           </div>
           <div class="wrap" v-if="message">
-            <ExerciseCard 
-              v-for="exercise in exercises" 
-              :key="exercise._id" 
-              :exercise="exercise"
-            />
+            <div class="row card-row">
+              <div class="col-md-3 card-wrap" v-for="exercise in exercises" :key="exercise._id" >
+                <ExerciseCard 
+                  :exercise="exercise"
+                />
+              </div>
+            </div>
           </div>
           <div class="wrap" v-else>
             <p>Je hebt nog geen opdrachten.</p>

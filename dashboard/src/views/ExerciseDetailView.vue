@@ -1,16 +1,24 @@
 <template>
   <Header/>
   <section class="page-wrap">
-    <div class="row">
-      <img :src="exercise.getImage()" alt="game-img">
-      <h1>{{ exercise.title }}</h1>
-      <p>{{ exercise.description }}</p>
-      <p>{{ exercise.exerciseType }}</p>
-    </div>
-    <div class="row">
-      <div class="map">
-        <div id="map-root" style="width: 100%; min-width: 100%; height: 500px; min-width: 500px;" />
-        <div id="marker"></div>
+    <div class="container-fluid pacer">
+      <div class="row mt-5 pt-5">
+        <h1>{{ exercise.title }}</h1>
+        <p class="mt-4 mb-4" >{{ exercise.description }}</p>
+        <p>Opdracht type: {{ exercise.exerciseType }}</p>
+      </div>
+      <div class="container-fluid pacer mt-5">
+        <div class="row">
+          <div class="col-6">
+            <img :src="exercise.getImage()" alt="game-img">
+          </div>
+          <div class="col-6">
+            <div class="map">
+              <div id="map-root" style="width: 100%; min-width: 100%; height: 500px; min-width: 500px;" />
+              <div id="marker"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
