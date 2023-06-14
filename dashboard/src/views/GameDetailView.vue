@@ -47,7 +47,7 @@
                 <span v-html="avatar()"></span>
               </div>
             </div>
-            <div class="exercise-wrap between mt-5 pt-2">
+            <div class="exercise-wrap between mt-5 pt-2" v-if="game.teamIds!.length > 0">
               <h2>Teams <span class="small">Totaal verdeelde spelers: {{ (teams.length * 2) - 2 + teams[teams.length - 1].playerIds!.length }}</span></h2>
             </div>
             <div class="wrapper team-wrap">
@@ -124,6 +124,8 @@ export default defineComponent({
     Header, ExerciseCard
   },
   async setup() {
+
+
     const route = useRoute();
     const reslutGame = await getGame(route.params.id.toString())
     const game: Ref<Game> = ref(reslutGame?.data)
@@ -131,6 +133,9 @@ export default defineComponent({
     const reslutCourse = await getCourse(game.value?.courseId!)
     const course: Ref<Course> = ref(reslutCourse?.data)
     const teams: Ref<Team[]> = ref<Team[]>([])
+
+    console.log(game.value.teamIds?.length)
+
 
     if(game.value.teamIds!.length > 0){
       const newTeams: Team[] = []

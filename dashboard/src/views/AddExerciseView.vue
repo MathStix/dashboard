@@ -94,7 +94,6 @@ import 'ol/ol.css';
               <label>Selcteer een opdracht type in.</label>
                 <select class="form-select" v-model="exerciseType">
                   <option selected value="Text">tekst</option>
-                  <option value="Photo">foto</option>
                   <option value="Draw">tekenen</option>
                   <option value="Geo">geo</option>
                   <option value="mirror">spiegel</option>
