@@ -44,7 +44,7 @@ for (let i = 0; i < answers.length; i++) {
               </div>
               <div class="body">
                 <div class="text" v-if="answer.texts[0].length > 2">
-                  <span v-for="text in answer.texts">{{ text }}</span>
+                  <span v-for="text in answer.texts">{{ text.replace("[", "").replace("]", "").replace('"', "").replace('"', "") }}</span>
                 </div>
                 <div class="photo" v-else>
                   <img v-for="img in answer.photos" :src="answer.getImage(img)" @click="openImg(answer.getImage(img))">

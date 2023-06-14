@@ -32,7 +32,7 @@ if(exercises.length > 0){
       <section class="exercises">
         <div class="row">
           <div class="col-12 mb-4 mt-5">
-            <h1>Gemaakte pdrachten.</h1>
+            <h1>Gemaakte opdrachten.</h1>
           </div>
           <div class="wrap" v-if="message">
             <div class="row card-row">
