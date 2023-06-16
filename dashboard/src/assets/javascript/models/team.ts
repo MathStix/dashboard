@@ -7,6 +7,7 @@ export interface teamInterface {
   completedExerciseIds: Exercise[] | null,
   unlockedExerciseIds: Exercise[] | null,
   guessedLetters: number[] | null,
+  finishTime: string | null,
 }
 
 export class Team implements teamInterface {
@@ -16,13 +17,15 @@ export class Team implements teamInterface {
   completedExerciseIds: Exercise[] | null;
   unlockedExerciseIds: Exercise[] | null;
   guessedLetters: number[] | null;
-  
-  constructor (id: string | null, name: string | null, playerId: string[] | null, completedExerciseIds: Exercise[] | null, unlockedExerciseIds: Exercise[] | null, guessedLetters: number[] | null ) {
+  finishTime: string | null;
+
+  constructor (id: string | null, name: string | null, playerId: string[] | null, completedExerciseIds: Exercise[] | null, unlockedExerciseIds: Exercise[] | null, guessedLetters: number[] | null, finishTime: string | null ) {
     this._id = id
     this.name = name
     this.playerIds = playerId
     this.completedExerciseIds = completedExerciseIds
     this.unlockedExerciseIds = unlockedExerciseIds,
     this.guessedLetters = guessedLetters
+    this.finishTime = finishTime
   }
 }
