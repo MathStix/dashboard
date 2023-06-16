@@ -81,7 +81,7 @@ export const getTeam = async (id:string) => {
       .then((response) => {
         result = {
           code: response.status,
-          data: new Team(response.data['_id'], response.data['name'], response.data['playerIds'], response.data['completedExerciseIds'], response.data['unlockedExerciseIds'], response.data['guessedLetters'])
+          data: new Team(response.data['_id'], response.data['name'], response.data['playerIds'], response.data['completedExerciseIds'], response.data['unlockedExerciseIds'], response.data['guessedLetters'], response.data['finishTime'])
         }
       })
   } catch (error: any) {
