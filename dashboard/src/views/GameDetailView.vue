@@ -56,8 +56,10 @@
               </span>
               <div class="team mb-5" v-else v-for="team in teams" :key="team._id">
                 <p class="mb-0"><b>{{ team.name }}</b></p>
-                <p v-if="team.finishTime!.includes('NaN')"><span class="small">Nog niet gefinisht.</span></p>
-                <p v-else class="h6 mb-4"><span class="small">{{ team.finishTime }}</span></p>
+                <div v-if="team.finishTime">
+                  <p v-if="team.finishTime!.includes('NaN')"><span class="small">Nog niet gefinisht.</span></p>
+                  <p v-else class="h6 mb-4"><span class="small">{{ team.finishTime }}</span></p>
+                </div>
                 <RouterLink class="btn btn-main" :to="{name: 'answers', params:{id: team._id}}">
                   <span>Bekijk antwoorden</span>
                 </RouterLink>
