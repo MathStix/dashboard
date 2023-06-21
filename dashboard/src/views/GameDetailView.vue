@@ -29,7 +29,7 @@
               </RouterLink>
             </div>
             <div class="wrapper">
-              <ExerciseCard class="card" v-for="exercise in course.exercises" :exercise="exercise" :key="exercise._id" />
+              <ExerciseCard class="card" v-for="exercise in course.exercises" :exercise="exercise" :key="exercise._id!" />
             </div>
           </div>
           <div class="col-md-5">
@@ -54,7 +54,7 @@
               <span v-if="teams?.length == 0">
                 Er zijn nog geen teams gemaakt.
               </span>
-              <div class="team mb-5" v-else v-for="team in teams" :key="team._id">
+              <div class="team mb-5" v-else v-for="team in teams" :key="team._id!">
                 <p class="mb-0"><b>{{ team.name }}</b></p>
                 <div v-if="team.finishTime">
                   <p v-if="team.finishTime!.includes('NaN')"><span class="small">Nog niet gefinisht.</span></p>
